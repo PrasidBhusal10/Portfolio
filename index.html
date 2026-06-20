@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prasid Bhusal — Full Stack Developer</title>
-  <meta name="description" content="Prasid Bhusal is a full stack developer crafting high-performance, beautiful web experiences." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 32'%3E%3Crect width='40' height='32' rx='6' fill='%230d0b18'/%3E%3Ctext x='3' y='23' font-family='system-ui,sans-serif' font-weight='800' font-size='17' fill='white'%3EPB%3C/text%3E%3Ctext x='28' y='23' font-family='system-ui,sans-serif' font-weight='800' font-size='17' fill='%237C3AED'%3E.%3C/text%3E%3C/svg%3E" />
+  <meta name="description"
+    content="Prasid Bhusal is a full stack developer crafting high-performance, beautiful web experiences." />
   <meta name="keywords" content="full stack developer, web developer, portfolio, React, Node.js" />
   <meta property="og:title" content="Prasid Bhusal — Full Stack Developer" />
-  <meta property="og:description" content="Full stack developer crafting high-performance, beautiful web experiences." />
+  <meta property="og:description"
+    content="Full stack developer crafting high-performance, beautiful web experiences." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet" />
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -49,6 +55,7 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="bg-neutral-950 text-neutral-100 font-sans antialiased overflow-x-hidden">
 
   <!-- Loading Screen -->
@@ -67,29 +74,42 @@
         </div>
       </div>
       <!-- Role label -->
-      <div class="font-mono text-neutral-600 text-xs tracking-[0.3em] uppercase mt-3 ldr-role-reveal">Full Stack Developer</div>
-      <!-- Counter -->
-      <div id="ldr-counter" class="font-mono text-neutral-700 text-sm mt-10 tabular-nums">00%</div>
+      <div class="font-mono text-xs tracking-[0.3em] uppercase mt-3 ldr-role-reveal" style="color:#1C1838">Full Stack Developer</div>
+      <!-- Counter ring -->
+      <div class="relative mt-10 ldr-role-reveal" style="width:140px;height:140px">
+        <svg viewBox="0 0 100 100" width="140" height="140" style="transform:rotate(-90deg);overflow:visible">
+          <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(124,58,237,0.12)" stroke-width="5"/>
+          <circle id="ldr-ring" cx="50" cy="50" r="42" fill="none" stroke="#7C3AED" stroke-width="5"
+            stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="263.9"
+            style="transition:stroke-dashoffset 0.12s ease;filter:drop-shadow(0 0 8px rgba(124,58,237,0.7))"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+          <div id="ldr-counter" class="tabular-nums" style="font-family:'JetBrains Mono',monospace;font-size:1.9rem;font-weight:800;color:#7C3AED;line-height:1;letter-spacing:-0.02em">00</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:0.52rem;color:#1C1838;font-weight:700;letter-spacing:0.18em">LOADING</div>
+        </div>
+      </div>
     </div>
     <!-- Progress bar -->
-    <div class="absolute bottom-0 left-0 right-0 h-px bg-neutral-900">
-      <div id="ldr-bar" class="h-full bg-gradient-to-r from-accent to-violet-400" style="width:0%;transition:none"></div>
+    <div class="absolute bottom-0 left-0 right-0 bg-neutral-900" style="height:3px">
+      <div id="ldr-bar" class="h-full bg-gradient-to-r from-accent to-violet-400" style="width:0%;transition:none">
+      </div>
     </div>
   </div>
 
-  <!-- Cursor Glow -->
-  <div id="cursor-glow" class="pointer-events-none fixed z-50 w-64 h-64 rounded-full opacity-0 transition-opacity duration-300" style="background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%); transform: translate(-50%,-50%);"></div>
 
   <!-- ===================== NAVBAR ===================== -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" role="navigation" aria-label="Main navigation">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" role="navigation"
+    aria-label="Main navigation">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center">
       <!-- Logo -->
-      <a href="#hero" class="navbar-logo font-heading text-xl font-bold tracking-tight transition-colors duration-300" aria-label="Home">
+      <a href="#hero" class="navbar-logo font-heading text-xl font-bold tracking-tight transition-colors duration-300 shrink-0"
+        aria-label="Home">
         PB<span class="text-accent">.</span>
       </a>
 
       <!-- Desktop Links -->
-      <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium uppercase tracking-wide flex-1 justify-center" role="list">
+        <li><a href="#hero" class="nav-link transition-colors duration-200">Home</a></li>
         <li><a href="#about" class="nav-link transition-colors duration-200">About</a></li>
         <li><a href="#skills" class="nav-link transition-colors duration-200">Skills</a></li>
         <li><a href="#projects" class="nav-link transition-colors duration-200">Projects</a></li>
@@ -98,20 +118,23 @@
       </ul>
 
       <!-- Right Controls -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 ml-auto">
         <!-- Theme Toggle -->
-        <button id="theme-toggle" aria-label="Toggle light/dark mode" class="navbar-btn w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200">
+        <button id="theme-toggle" aria-label="Toggle light/dark mode"
+          class="navbar-btn w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200">
           <i class="fa-solid fa-sun hidden" id="icon-sun"></i>
           <i class="fa-solid fa-moon" id="icon-moon"></i>
         </button>
 
         <!-- Resume Button -->
-        <a href="#" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium navbar-resume transition-all duration-200">
+        <a href="assets/images/PrasidResume1.pdf" target="_blank" rel="noopener noreferrer"
+          class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-medium navbar-resume transition-all duration-200">
           <i class="fa-solid fa-file-lines text-xs"></i> Resume
         </a>
 
         <!-- Mobile Hamburger -->
-        <button id="mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false" class="navbar-btn md:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-200">
+        <button id="mobile-menu-btn" aria-label="Open mobile menu" aria-expanded="false"
+          class="navbar-btn md:hidden w-9 h-9 rounded-lg flex items-center justify-center transition-colors duration-200">
           <i class="fa-solid fa-bars" id="hamburger-icon"></i>
         </button>
       </div>
@@ -119,14 +142,15 @@
 
     <!-- Mobile Menu — inline bg so it always matches lavender theme -->
     <div id="mobile-menu" class="md:hidden hidden mobile-menu-panel backdrop-blur-xl border-t" role="menu">
-      <ul class="flex flex-col px-6 py-5 gap-1 text-sm font-medium">
+      <ul class="flex flex-col px-6 py-5 gap-1 text-sm font-medium uppercase tracking-wide">
+        <li><a href="#hero" class="mobile-link">Home</a></li>
         <li><a href="#about" class="mobile-link">About</a></li>
         <li><a href="#skills" class="mobile-link">Skills</a></li>
         <li><a href="#projects" class="mobile-link">Projects</a></li>
         <li><a href="#experience" class="mobile-link">Experience</a></li>
         <li><a href="#contact" class="mobile-link">Contact</a></li>
         <li class="pt-3">
-          <a href="#" class="mobile-resume-btn">
+          <a href="assets/images/PrasidResume1.pdf" target="_blank" rel="noopener noreferrer" class="mobile-resume-btn">
             <i class="fa-solid fa-file-lines text-xs mr-2"></i>Resume
           </a>
         </li>
@@ -135,7 +159,8 @@
   </nav>
 
   <!-- ===================== HERO ===================== -->
-  <section id="hero" class="min-h-screen flex flex-col justify-center relative overflow-hidden px-6" aria-label="Hero section">
+  <section id="hero" class="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 pt-24 pb-12"
+    aria-label="Hero section">
     <!-- Matrix rain canvas -->
     <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
     <!-- Grid -->
@@ -157,22 +182,12 @@
     <div class="hud-label hud-label-bl">v2.0.26 // PORTFOLIO</div>
     <div class="hud-label hud-label-br">LAT: 27.7 // LON: 85.3</div>
 
-    <div class="max-w-6xl mx-auto w-full relative z-10 grid lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_360px] gap-10 items-center">
+    <div
+      class="max-w-6xl mx-auto w-full relative z-10 grid lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_360px] gap-10 items-center">
 
       <!-- ── LEFT CONTENT ── -->
       <div>
         <!-- Terminal prompt eyebrow -->
-        <div class="hero-item flex flex-wrap items-center gap-x-2 gap-y-1 mb-7 font-mono text-sm" style="--delay:0.1s">
-          <span style="color:rgba(100,60,200,0.7)">~/portfolio</span>
-          <span style="color:#9893BE">$</span>
-          <span class="text-accent">init</span>
-          <span style="color:#9893BE">--status=</span>
-          <span class="text-emerald-600 font-semibold">available_for_work</span>
-          <span class="relative flex h-2 w-2 ml-1 mt-0.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-70"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-        </div>
 
         <!-- Name — Unbounded font, per-letter stagger -->
         <h1 class="name-display mb-5" aria-label="Prasid Bhusal">
@@ -211,45 +226,63 @@
         <!-- Code-comment description -->
         <div class="hero-item font-mono text-sm leading-loose mb-8 max-w-lg" style="--delay:0.75s">
           <span style="color:rgba(124,58,237,0.5)">/**</span><br />
-          <span class="pl-4" style="color:#6B659A">* Building fast &amp; beautiful digital products</span><br />
-          <span class="pl-4" style="color:#6B659A">* from elegant interfaces to robust backends.</span><br />
-          <span class="pl-4" style="color:#6B659A">* <span style="color:rgba(124,58,237,0.6)">@open-to</span> fulltime &amp; freelance</span><br />
+          <span class="pl-4" style="color:#1C1838">* Building fast &amp; beautiful digital products</span><br />
+          <span class="pl-4" style="color:#1C1838">* from elegant interfaces to robust backends.</span><br />
+          <span class="pl-4" style="color:#1C1838">* <span style="color:rgba(124,58,237,0.6)">@open-to</span> internships</span><br />
           <span style="color:rgba(124,58,237,0.5)">*/</span>
         </div>
 
-        <!-- Tech stack badges -->
-        <div class="hero-item flex flex-wrap gap-2 mb-8" style="--delay:0.85s">
-          <span class="tech-float-badge">⚛ React</span>
-          <span class="tech-float-badge">TS TypeScript</span>
-          <span class="tech-float-badge">⬡ Node.js</span>
-          <span class="tech-float-badge">▲ Next.js</span>
-          <span class="tech-float-badge">☁ AWS</span>
-          <span class="tech-float-badge">🐳 Docker</span>
-        </div>
 
         <!-- CTAs -->
         <div class="hero-item flex flex-wrap gap-4" style="--delay:0.95s">
-          <a href="#projects" class="btn-primary group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-white font-semibold hover:bg-violet-700 transition-all duration-300">
-            <span class="font-mono text-xs opacity-60">./</span>View Work
-            <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform duration-200"></i>
+          <a href="#contact"
+            class="group inline-flex items-center gap-3 px-7 py-3.5 rounded-xl text-sm transition-all duration-300"
+            style="background:linear-gradient(135deg,#7C3AED,#6D28D9);color:#fff;box-shadow:0 4px 24px rgba(124,58,237,0.35);font-family:'Fira Sans',sans-serif;font-weight:400;">
+            <i class="fa-solid fa-paper-plane text-xs group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"></i>
+            Contact Me
           </a>
-          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-mono text-sm font-medium transition-all duration-300 hover:bg-accent/10" style="border:1px solid rgba(124,58,237,0.35); color:#4A437A;">
-            <span class="text-accent">$</span> contact_me<span class="typewriter-cursor text-accent text-sm ml-0.5">_</span>
+          <a href="#projects"
+            class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl text-sm transition-all duration-300"
+            style="border:1.5px solid rgba(124,58,237,0.35);color:#4A437A;background:rgba(124,58,237,0.06);font-family:'Fira Sans',sans-serif;font-weight:400;">
+            View Work <i class="fa-solid fa-arrow-right text-accent text-xs"></i>
           </a>
         </div>
 
+        <!-- Socials -->
+        <div class="hero-item flex items-center gap-5 mt-8" style="--delay:1.05s">
+          <span style="font-family:'Fira Sans',sans-serif;font-weight:400;font-size:0.8rem;color:#5B4E8A;letter-spacing:0.05em">Find me on</span>
+          <div class="w-6 h-px" style="background:rgba(124,58,237,0.4)"></div>
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/PrasidBhusal10" target="_blank" rel="noopener noreferrer"
+              class="hero-social-btn" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/prasidbhusal/" target="_blank" rel="noopener noreferrer"
+              class="hero-social-btn" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://x.com/Prasidbhusal1" target="_blank" rel="noopener noreferrer"
+              class="hero-social-btn" aria-label="X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+
         <!-- Scroll down -->
-        <div class="hero-item mt-14 flex items-center gap-3" style="--delay:1.2s">
+        <div class="hero-item mt-10 flex items-center gap-3" style="--delay:1.2s">
           <div class="w-12 h-px" style="background:rgba(124,58,237,0.3)"></div>
-          <a href="#about" class="font-mono text-xs tracking-widest uppercase hover:text-accent transition-colors duration-200" style="color:#9893BE">scroll_down()</a>
-          <div class="w-4 h-4 rounded-full border flex items-center justify-center" style="border-color:rgba(124,58,237,0.4)">
+          <a href="#about"
+            class="font-mono text-xs tracking-widest uppercase hover:text-accent transition-colors duration-200"
+            style="color:#9893BE">scroll_down()</a>
+          <div class="w-4 h-4 rounded-full border flex items-center justify-center"
+            style="border-color:rgba(124,58,237,0.4)">
             <div class="w-1 h-1.5 bg-accent rounded-full animate-bounce"></div>
           </div>
         </div>
       </div>
 
       <!-- ── RIGHT: TERMINAL + HUD STATS ── -->
-      <div class="hero-item hidden lg:block" style="--delay:1.0s">
+      <div class="hero-item block" style="--delay:1.0s">
         <!-- Terminal window -->
         <div class="terminal-window">
           <div class="terminal-header">
@@ -263,21 +296,6 @@
           </div>
         </div>
 
-        <!-- HUD stat bar -->
-        <div class="grid grid-cols-3 gap-2 mt-3">
-          <div class="hud-stat-card">
-            <div class="hud-stat-val">3+</div>
-            <div class="hud-stat-key">YRS_EXP</div>
-          </div>
-          <div class="hud-stat-card">
-            <div class="hud-stat-val">20+</div>
-            <div class="hud-stat-key">PROJECTS</div>
-          </div>
-          <div class="hud-stat-card">
-            <div class="hud-stat-val">10+</div>
-            <div class="hud-stat-key">CLIENTS</div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -292,21 +310,121 @@
         <!-- Photo -->
         <div class="reveal relative">
           <div class="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto md:mx-0">
-            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/40 to-violet-600/20 blur-xl scale-110"></div>
+            <div
+              class="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/40 to-violet-600/20 blur-xl scale-110">
+            </div>
             <div class="relative w-full h-full rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900">
               <!-- Profile image placeholder — replace src with your actual photo -->
-              <img src="assets/images/profile.jpg" alt="Prasid Bhusal" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-avatar').style.display='flex'" />
-              <div class="fallback-avatar hidden w-full h-full items-center justify-center bg-gradient-to-br from-neutral-800 to-neutral-900">
-                <span class="font-heading text-7xl font-bold text-gradient">PB</span>
+              <img src="assets/images/profile.jpg" alt="Prasid Bhusal" class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-avatar').style.display='flex'" />
+              <div class="fallback-avatar hidden w-full h-full items-center justify-center" style="background:#08060f">
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%">
+                  <defs>
+                    <linearGradient id="pbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#7C3AED"/>
+                      <stop offset="100%" stop-color="#A78BFA"/>
+                    </linearGradient>
+                    <filter id="chipGlow">
+                      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="pinGlow">
+                      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <!-- TOP PINS -->
+                  <rect x="62" y="4"  width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="80" y="4"  width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="98" y="4"  width="7" height="32" rx="2" fill="#A78BFA" opacity="0.85" filter="url(#pinGlow)"/>
+                  <rect x="116" y="4" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="134" y="4" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="152" y="4" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="170" y="4" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+
+                  <!-- BOTTOM PINS -->
+                  <rect x="62"  y="204" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="80"  y="204" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="98"  y="204" width="7" height="32" rx="2" fill="#A78BFA" opacity="0.85" filter="url(#pinGlow)"/>
+                  <rect x="116" y="204" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="134" y="204" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="152" y="204" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="170" y="204" width="7" height="32" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+
+                  <!-- LEFT PINS -->
+                  <rect x="4" y="62"  width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="4" y="80"  width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="4" y="98"  width="32" height="7" rx="2" fill="#A78BFA" opacity="0.85" filter="url(#pinGlow)"/>
+                  <rect x="4" y="116" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="4" y="134" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="4" y="152" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="4" y="170" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+
+                  <!-- RIGHT PINS -->
+                  <rect x="204" y="62"  width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="204" y="80"  width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="204" y="98"  width="32" height="7" rx="2" fill="#A78BFA" opacity="0.85" filter="url(#pinGlow)"/>
+                  <rect x="204" y="116" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="204" y="134" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="204" y="152" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+                  <rect x="204" y="170" width="32" height="7" rx="2" fill="#7C3AED" opacity="0.65" filter="url(#pinGlow)"/>
+
+                  <!-- CHIP BODY -->
+                  <rect x="36" y="36" width="168" height="168" rx="10" fill="#0e0a1e" stroke="#7C3AED" stroke-width="1.5" stroke-opacity="0.55"/>
+
+                  <!-- OUTER INNER BORDER -->
+                  <rect x="50" y="50" width="140" height="140" rx="6" fill="none" stroke="#7C3AED" stroke-width="0.7" stroke-opacity="0.2"/>
+
+                  <!-- CIRCUIT TRACES — corners -->
+                  <polyline points="50,85 80,85 80,50" fill="none" stroke="#7C3AED" stroke-width="0.8" stroke-opacity="0.3"/>
+                  <polyline points="190,85 160,85 160,50" fill="none" stroke="#7C3AED" stroke-width="0.8" stroke-opacity="0.3"/>
+                  <polyline points="50,155 80,155 80,190" fill="none" stroke="#7C3AED" stroke-width="0.8" stroke-opacity="0.3"/>
+                  <polyline points="190,155 160,155 160,190" fill="none" stroke="#7C3AED" stroke-width="0.8" stroke-opacity="0.3"/>
+
+                  <!-- CIRCUIT NODES -->
+                  <circle cx="80" cy="85" r="3" fill="#7C3AED" opacity="0.55"/>
+                  <circle cx="160" cy="85" r="3" fill="#7C3AED" opacity="0.55"/>
+                  <circle cx="80" cy="155" r="3" fill="#7C3AED" opacity="0.55"/>
+                  <circle cx="160" cy="155" r="3" fill="#7C3AED" opacity="0.55"/>
+
+                  <!-- MIDPOINT TRACES -->
+                  <line x1="120" y1="50" x2="120" y2="90" stroke="#A78BFA" stroke-width="0.7" stroke-opacity="0.3"/>
+                  <line x1="120" y1="150" x2="120" y2="190" stroke="#A78BFA" stroke-width="0.7" stroke-opacity="0.3"/>
+                  <line x1="50" y1="120" x2="90" y2="120" stroke="#A78BFA" stroke-width="0.7" stroke-opacity="0.3"/>
+                  <line x1="150" y1="120" x2="190" y2="120" stroke="#A78BFA" stroke-width="0.7" stroke-opacity="0.3"/>
+                  <circle cx="120" cy="65" r="2" fill="#A78BFA" opacity="0.5"/>
+                  <circle cx="120" cy="175" r="2" fill="#A78BFA" opacity="0.5"/>
+                  <circle cx="65" cy="120" r="2" fill="#A78BFA" opacity="0.5"/>
+                  <circle cx="175" cy="120" r="2" fill="#A78BFA" opacity="0.5"/>
+
+                  <!-- CENTER DIE -->
+                  <rect x="88" y="88" width="64" height="64" rx="5" fill="#13092a" stroke="#7C3AED" stroke-width="1.2" stroke-opacity="0.7" filter="url(#chipGlow)"/>
+
+                  <!-- SCAN LINES inside die -->
+                  <line x1="88" y1="110" x2="152" y2="110" stroke="#7C3AED" stroke-width="0.5" stroke-opacity="0.18"/>
+                  <line x1="88" y1="120" x2="152" y2="120" stroke="#7C3AED" stroke-width="0.5" stroke-opacity="0.18"/>
+                  <line x1="88" y1="130" x2="152" y2="130" stroke="#7C3AED" stroke-width="0.5" stroke-opacity="0.18"/>
+
+                  <!-- PB TEXT -->
+                  <text x="120" y="132" text-anchor="middle" font-family="Syne,sans-serif" font-weight="800" font-size="30" fill="url(#pbGrad)" filter="url(#chipGlow)">PB</text>
+
+                  <!-- ORIENTATION DOT (top-left) -->
+                  <circle cx="48" cy="48" r="4.5" fill="#7C3AED" opacity="0.7"/>
+
+                  <!-- CHIP LABEL -->
+                  <text x="186" y="194" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#7C3AED" opacity="0.35" letter-spacing="0.5">PB-CORE v2.0</text>
+                </svg>
               </div>
             </div>
             <!-- Accent ring -->
-            <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl border-2 border-accent/30 pointer-events-none"></div>
+            <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-xl border-2 border-accent/30 pointer-events-none">
+            </div>
           </div>
 
           <!-- Fun facts chips -->
           <div class="flex flex-wrap gap-2 mt-8 md:max-w-xs">
-            <span class="chip"><i class="fa-solid fa-location-dot text-accent"></i> Nepal / Global</span>
+            <span class="chip"><i class="fa-solid fa-location-dot text-accent"></i> Lubbock, Texas</span>
             <span class="chip"><i class="fa-solid fa-coffee text-accent"></i> Coffee Driven</span>
             <span class="chip"><i class="fa-solid fa-code text-accent"></i> Open Source Fan</span>
             <span class="chip"><i class="fa-solid fa-music text-accent"></i> Music Lover</span>
@@ -316,38 +434,23 @@
         <!-- Bio -->
         <div class="reveal space-y-6">
           <h2 class="font-heading text-4xl sm:text-5xl font-bold text-white leading-tight">
-            Crafting digital <span class="text-gradient">experiences</span> that matter
+            Compiling my <span class="text-gradient">story</span>
           </h2>
           <p class="text-neutral-400 leading-relaxed text-lg">
-            Hey! I'm Prasid — a passionate full stack developer who loves turning complex problems into clean, intuitive solutions. I care deeply about the intersection of engineering and design.
+            Hi, I'm Prasid 👋<br />
+            I'm a Computer Science student at Texas Tech University who spends most of his time turning coffee into code
+            and bugs into learning opportunities. When I'm not debugging something that worked perfectly five minutes
+            ago, you'll probably find me building projects, solving LeetCode problems, exploring AI, or convincing
+            myself that "one more commit" won't take another three hours.
           </p>
-          <p class="text-neutral-400 leading-relaxed">
-            With 3+ years of experience building everything from SaaS platforms to mobile apps, I bring both technical depth and design sensibility to every project. I thrive in collaborative environments and love pushing what the web can do.
+          <p class="text-neutral-400 leading-relaxed text-lg">
+            I enjoy creating software that solves real-world problems, from full-stack web applications to AI-powered
+            solutions. Along the way, I've worked on research projects, won hackathons, and learned that Stack Overflow
+            is sometimes a best friend and sometimes a terrible influence.
           </p>
-
-          <!-- Values -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-            <div class="value-card">
-              <i class="fa-solid fa-bolt text-accent mb-3"></i>
-              <h3 class="font-semibold text-white mb-1">Performance First</h3>
-              <p class="text-neutral-500 text-sm">Every millisecond counts — I optimize relentlessly.</p>
-            </div>
-            <div class="value-card">
-              <i class="fa-solid fa-universal-access text-accent mb-3"></i>
-              <h3 class="font-semibold text-white mb-1">Accessibility</h3>
-              <p class="text-neutral-500 text-sm">The web is for everyone. I build with inclusion in mind.</p>
-            </div>
-            <div class="value-card">
-              <i class="fa-solid fa-palette text-accent mb-3"></i>
-              <h3 class="font-semibold text-white mb-1">Pixel Perfect</h3>
-              <p class="text-neutral-500 text-sm">Details are everything. Design meets development.</p>
-            </div>
-            <div class="value-card">
-              <i class="fa-solid fa-rocket text-accent mb-3"></i>
-              <h3 class="font-semibold text-white mb-1">Ship Fast</h3>
-              <p class="text-neutral-500 text-sm">Iterating quickly with quality never compromised.</p>
-            </div>
-          </div>
+          <p class="text-neutral-400 leading-relaxed text-lg">
+            My goal is simple: keep learning, keep building, and hopefully write more code than bugs. 🚀
+          </p>
         </div>
       </div>
     </div>
@@ -358,98 +461,166 @@
     <div class="max-w-6xl mx-auto">
       <div class="section-label reveal">Tech Stack</div>
       <h2 class="reveal font-heading text-4xl sm:text-5xl font-bold text-white mt-3 mb-4">Tools I work with</h2>
-      <p class="reveal text-neutral-400 mb-16 max-w-xl">A curated set of technologies I use to build fast, scalable, and beautiful products.</p>
 
       <!-- Category Tabs -->
       <div class="reveal flex flex-wrap gap-2 mb-10">
-        <button class="skill-tab active" data-tab="all">All</button>
-        <button class="skill-tab" data-tab="frontend">Frontend</button>
-        <button class="skill-tab" data-tab="backend">Backend</button>
-        <button class="skill-tab" data-tab="tools">Tools & Cloud</button>
+        <button class="skill-tab" data-tab="all">All</button>
+        <button class="skill-tab active" data-tab="languages">Languages</button>
+        <button class="skill-tab" data-tab="frameworks">Frameworks</button>
+        <button class="skill-tab" data-tab="databases">Databases</button>
+        <button class="skill-tab" data-tab="cloud">Cloud & DevOps</button>
+        <button class="skill-tab" data-tab="libraries">Libraries</button>
       </div>
 
       <!-- Skills Grid -->
-      <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
 
-        <!-- Frontend -->
-        <div class="skill-card reveal" data-category="frontend">
-          <i class="fa-brands fa-react text-3xl text-[#61DAFB]"></i>
-          <span class="skill-name">React</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:92%"></div></div>
+        <!-- Languages -->
+        <div class="skill-card reveal" data-category="languages">
+          <i class="fa-brands fa-python text-3xl text-[#FFD43B]"></i>
+          <span class="skill-name">Python</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="frontend">
+        <div class="skill-card reveal" data-category="languages">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#004482">C++</div>
+          <span class="skill-name">C++</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="languages">
           <i class="fa-brands fa-js text-3xl text-[#F7DF1E]"></i>
           <span class="skill-name">JavaScript</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:95%"></div></div>
+          <div class="skill-bar"><div class="skill-fill" style="--w:90%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="frontend">
-          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none"><path d="M16 2L2 28h28L16 2z" fill="#3178C6"/><path d="M16 8l-8 16h16L16 8z" fill="white" opacity=".2"/></svg>
+        <div class="skill-card reveal" data-category="languages">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L2 28h28L16 2z" fill="#3178C6"/>
+            <path d="M16 8l-8 16h16L16 8z" fill="white" opacity=".2"/>
+          </svg>
           <span class="skill-name">TypeScript</span>
           <div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="frontend">
-          <svg class="w-8 h-8" viewBox="0 0 32 32"><rect width="32" height="32" rx="4" fill="black"/><path d="M22 6H10l-4 20 6-4 4 10 4-10 6 4z" fill="white"/></svg>
-          <span class="skill-name">Next.js</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div>
-        </div>
-        <div class="skill-card reveal" data-category="frontend">
-          <i class="fa-brands fa-css3-alt text-3xl text-[#2965F1]"></i>
-          <span class="skill-name">CSS / Tailwind</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:93%"></div></div>
-        </div>
-
-        <!-- Backend -->
-        <div class="skill-card reveal" data-category="backend">
-          <i class="fa-brands fa-node-js text-3xl text-[#68A063]"></i>
-          <span class="skill-name">Node.js</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:87%"></div></div>
-        </div>
-        <div class="skill-card reveal" data-category="backend">
-          <i class="fa-brands fa-python text-3xl text-[#FFD43B]"></i>
-          <span class="skill-name">Python</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
-        </div>
-        <div class="skill-card reveal" data-category="backend">
-          <svg class="w-8 h-8 text-[#47A248]" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2zm0 25C9.4 27 5 22.6 5 16S9.4 5 16 5s11 4.4 11 11-4.4 11-11 11z"/><path d="M11 20.5l5-9 5 9H11z"/></svg>
-          <span class="skill-name">MongoDB</span>
+        <div class="skill-card reveal" data-category="languages">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#336791">SQL</div>
+          <span class="skill-name">SQL</span>
           <div class="skill-bar"><div class="skill-fill" style="--w:82%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="backend">
-          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="#336791"><path d="M16 2C8.3 2 2 8.3 2 16s6.3 14 14 14 14-6.3 14-14S23.7 2 16 2z"/></svg>
-          <span class="skill-name">PostgreSQL</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div>
-        </div>
-        <div class="skill-card reveal" data-category="backend">
-          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="4" fill="#E10098"/><path d="M8 16l8-8 8 8-8 8-8-8z" fill="white"/></svg>
-          <span class="skill-name">GraphQL</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:75%"></div></div>
-        </div>
-
-        <!-- Tools -->
-        <div class="skill-card reveal" data-category="tools">
-          <i class="fa-brands fa-git-alt text-3xl text-[#F05032]"></i>
-          <span class="skill-name">Git</span>
+        <div class="skill-card reveal" data-category="languages">
+          <i class="fa-brands fa-html5 text-3xl text-[#E44D26]"></i>
+          <span class="skill-name">HTML/CSS</span>
           <div class="skill-bar"><div class="skill-fill" style="--w:92%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="tools">
+
+        <!-- Frameworks -->
+        <div class="skill-card reveal" data-category="frameworks">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#009688">API</div>
+          <span class="skill-name">FastAPI</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:82%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="frameworks">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#092E20">Dj</div>
+          <span class="skill-name">Django</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="frameworks">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#000">Fl</div>
+          <span class="skill-name">Flask</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="frameworks">
+          <i class="fa-brands fa-node-js text-3xl text-[#68A063]"></i>
+          <span class="skill-name">Node.js</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="frameworks">
+          <i class="fa-brands fa-react text-3xl text-[#61DAFB]"></i>
+          <span class="skill-name">React</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:88%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="frameworks">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#512BD4">.NET</div>
+          <span class="skill-name">.NET</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:70%"></div></div>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-card reveal" data-category="databases">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="#336791"><circle cx="16" cy="16" r="14"/></svg>
+          <span class="skill-name">PostgreSQL</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:82%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="databases">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#DC382D">Re</div>
+          <span class="skill-name">Redis</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:75%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="databases">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#231F20">Kf</div>
+          <span class="skill-name">Kafka</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:70%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="databases">
           <i class="fa-brands fa-docker text-3xl text-[#2496ED]"></i>
           <span class="skill-name">Docker</span>
           <div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="tools">
+
+        <!-- Cloud & DevOps -->
+        <div class="skill-card reveal" data-category="cloud">
+          <i class="fa-brands fa-git-alt text-3xl text-[#F05032]"></i>
+          <span class="skill-name">Git</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:92%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="cloud">
+          <i class="fa-brands fa-github text-3xl" style="color:#1C1838"></i>
+          <span class="skill-name">GitHub</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:90%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="cloud">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#FC6D26">GL</div>
+          <span class="skill-name">GitLab</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="cloud">
           <i class="fa-brands fa-aws text-3xl text-[#FF9900]"></i>
           <span class="skill-name">AWS</span>
           <div class="skill-bar"><div class="skill-fill" style="--w:72%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="tools">
-          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="#F24E1E"><path d="M12 28c2.2 0 4-1.8 4-4v-4h-4a4 4 0 0 0 0 8z"/><path d="M8 16a4 4 0 0 1 4-4h4v8H12a4 4 0 0 1-4-4z" fill="#A259FF"/><path d="M8 8a4 4 0 0 1 4-4h4v8H12A4 4 0 0 1 8 8z" fill="#1ABCFE"/><path d="M16 4h4a4 4 0 0 1 0 8h-4V4z" fill="#0ACF83"/></svg>
-          <span class="skill-name">Figma</span>
-          <div class="skill-bar"><div class="skill-fill" style="--w:82%"></div></div>
+        <div class="skill-card reveal" data-category="cloud">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#4285F4">GCP</div>
+          <span class="skill-name">GCP</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:68%"></div></div>
         </div>
-        <div class="skill-card reveal" data-category="tools">
-          <i class="fa-brands fa-github text-3xl text-white"></i>
-          <span class="skill-name">CI/CD</span>
+
+        <!-- Libraries -->
+        <div class="skill-card reveal" data-category="libraries">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#4DABCF">Np</div>
+          <span class="skill-name">NumPy</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:85%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="libraries">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#150458">Pd</div>
+          <span class="skill-name">Pandas</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:83%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="libraries">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#FF6F00">TF</div>
+          <span class="skill-name">TensorFlow</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:75%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="libraries">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#EE4C2C">Pt</div>
+          <span class="skill-name">PyTorch</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:72%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="libraries">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#11557C">Mpl</div>
+          <span class="skill-name">Matplotlib</span>
           <div class="skill-bar"><div class="skill-fill" style="--w:80%"></div></div>
+        </div>
+        <div class="skill-card reveal" data-category="libraries">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background:#0A9EDC">py</div>
+          <span class="skill-name">pytest</span>
+          <div class="skill-bar"><div class="skill-fill" style="--w:78%"></div></div>
         </div>
       </div>
     </div>
@@ -460,29 +631,26 @@
     <div class="max-w-6xl mx-auto">
       <div class="section-label reveal">Work</div>
       <h2 class="reveal font-heading text-4xl sm:text-5xl font-bold text-white mt-3 mb-4">Featured Projects</h2>
-      <p class="reveal text-neutral-400 mb-10 max-w-xl">A selection of projects I've built — from concept to deployment.</p>
 
       <!-- Filter Buttons -->
       <div class="reveal flex flex-wrap gap-2 mb-12">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="web">Web</button>
-        <button class="filter-btn" data-filter="mobile">Mobile</button>
-        <button class="filter-btn" data-filter="design">Design</button>
         <button class="filter-btn" data-filter="fullstack">Full Stack</button>
       </div>
 
       <!-- Projects Grid -->
       <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Project 1 -->
-        <article class="project-card reveal" data-category="fullstack web" aria-label="Project: DevFlow">
+        <!-- KickOff Alerts -->
+        <article class="project-card reveal" data-category="fullstack web" aria-label="Project: KickOff Alerts">
           <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-violet-900 to-indigo-900 flex items-center justify-center">
-              <i class="fa-solid fa-code text-6xl text-violet-300/40"></i>
+            <div class="project-image bg-gradient-to-br from-green-900 to-emerald-900 flex items-center justify-center">
+              <i class="fa-solid fa-futbol text-6xl text-green-300/40"></i>
             </div>
             <div class="project-overlay">
-              <a href="#" class="project-overlay-btn" aria-label="Live demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-              <a href="#" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.kickoffalerts.com/" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="Live site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/PrasidBhusal10/KickOffAlerts" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
           <div class="p-5">
@@ -490,130 +658,71 @@
               <span class="text-xs font-mono text-accent uppercase tracking-widest">Full Stack</span>
               <span class="text-xs text-neutral-600">2025</span>
             </div>
-            <h3 class="font-heading text-xl font-bold text-white mb-2">DevFlow</h3>
-            <p class="text-neutral-400 text-sm leading-relaxed mb-4">A real-time collaborative code editor with AI-powered suggestions, live preview, and multi-user rooms.</p>
+            <h3 class="font-heading text-xl font-bold text-white mb-2">KickOff Alerts</h3>
+            <ul class="text-neutral-400 text-sm leading-relaxed mb-4 space-y-1.5 list-none">
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>Scrapes live FIFA ticket prices via BeautifulSoup and fires threshold-based email alerts through SendGrid.</li>
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>FastAPI backend with PostgreSQL persistence, deployed on Railway with automated scheduler.</li>
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>Threshold alert engine lets users set custom price targets and receive instant notifications.</li>
+            </ul>
             <div class="flex flex-wrap gap-2">
-              <span class="tech-tag">React</span><span class="tech-tag">Node.js</span><span class="tech-tag">Socket.io</span><span class="tech-tag">OpenAI</span>
+              <span class="tech-tag">Python</span><span class="tech-tag">FastAPI</span><span class="tech-tag">BeautifulSoup</span><span class="tech-tag">SendGrid</span><span class="tech-tag">PostgreSQL</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 2 -->
-        <article class="project-card reveal" data-category="web design" aria-label="Project: Lumina UI">
+        <!-- EzeLinks -->
+        <article class="project-card reveal" data-category="fullstack web" aria-label="Project: EzeLinks">
           <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-rose-900 to-pink-900 flex items-center justify-center">
-              <i class="fa-solid fa-layer-group text-6xl text-rose-300/40"></i>
+            <div class="project-image bg-gradient-to-br from-violet-900 to-indigo-900 flex items-center justify-center">
+              <i class="fa-solid fa-link text-6xl text-violet-300/40"></i>
             </div>
             <div class="project-overlay">
-              <a href="#" class="project-overlay-btn" aria-label="Live demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-              <a href="#" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://ezelinks.com" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="Live site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/PrasidBhusal10/Ezelink" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
           <div class="p-5">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono text-accent uppercase tracking-widest">Design System</span>
+              <span class="text-xs font-mono text-accent uppercase tracking-widest">Full Stack</span>
               <span class="text-xs text-neutral-600">2025</span>
             </div>
-            <h3 class="font-heading text-xl font-bold text-white mb-2">Lumina UI</h3>
-            <p class="text-neutral-400 text-sm leading-relaxed mb-4">An open-source React component library with 80+ accessible components, dark mode, and Figma integration.</p>
+            <h3 class="font-heading text-xl font-bold text-white mb-2">EzeLinks</h3>
+            <ul class="text-neutral-400 text-sm leading-relaxed mb-4 space-y-1.5 list-none">
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>URL shortener achieving ~6ms redirects via Redis caching with JWT-secured API endpoints.</li>
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>Async Kafka pipeline streams click events for real-time analytics without blocking redirects.</li>
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>Fully containerized with Docker; deployed across Railway (backend), Netlify (frontend), and PostgreSQL.</li>
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>FastAPI microservices architecture with Redis for cache and Kafka for event-driven analytics.</li>
+            </ul>
             <div class="flex flex-wrap gap-2">
-              <span class="tech-tag">React</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Storybook</span><span class="tech-tag">Figma</span>
+              <span class="tech-tag">Docker</span><span class="tech-tag">Kafka</span><span class="tech-tag">Python</span><span class="tech-tag">Redis</span><span class="tech-tag">FastAPI</span><span class="tech-tag">PostgreSQL</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 3 -->
-        <article class="project-card reveal" data-category="mobile fullstack" aria-label="Project: TrackMate">
+        <!-- Kuik Resume -->
+        <article class="project-card reveal" data-category="fullstack web" aria-label="Project: Kuik Resume">
           <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-emerald-900 to-teal-900 flex items-center justify-center">
-              <i class="fa-solid fa-chart-line text-6xl text-emerald-300/40"></i>
+            <div class="project-image bg-gradient-to-br from-sky-900 to-cyan-900 flex items-center justify-center">
+              <i class="fa-solid fa-file-lines text-6xl text-sky-300/40"></i>
             </div>
             <div class="project-overlay">
-              <a href="#" class="project-overlay-btn" aria-label="Live demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-              <a href="#" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://kuikresume.com" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="Live site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/PrasidBhusal10/Kuik-Resume" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
           <div class="p-5">
             <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono text-accent uppercase tracking-widest">Mobile</span>
-              <span class="text-xs text-neutral-600">2024</span>
+              <span class="text-xs font-mono text-accent uppercase tracking-widest">Full Stack</span>
+              <span class="text-xs text-neutral-600">2025</span>
             </div>
-            <h3 class="font-heading text-xl font-bold text-white mb-2">TrackMate</h3>
-            <p class="text-neutral-400 text-sm leading-relaxed mb-4">Personal finance tracker with smart categorization, budget alerts, and beautiful data visualizations.</p>
+            <h3 class="font-heading text-xl font-bold text-white mb-2">Kuik Resume</h3>
+            <ul class="text-neutral-400 text-sm leading-relaxed mb-4 space-y-1.5 list-none">
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>LLM-powered resume optimizer that tailors content to job descriptions and highlights skill gaps.</li>
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>Split-view diff UI shows exactly what changed between original and optimized resume versions.</li>
+              <li class="flex gap-2"><span class="text-accent mt-0.5 shrink-0">•</span>Next.js + TypeScript frontend backed by a Python FastAPI microservice with PostgreSQL storage.</li>
+            </ul>
             <div class="flex flex-wrap gap-2">
-              <span class="tech-tag">React Native</span><span class="tech-tag">Expo</span><span class="tech-tag">PostgreSQL</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 4 -->
-        <article class="project-card reveal" data-category="web fullstack" aria-label="Project: ShopSphere">
-          <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-amber-900 to-orange-900 flex items-center justify-center">
-              <i class="fa-solid fa-bag-shopping text-6xl text-amber-300/40"></i>
-            </div>
-            <div class="project-overlay">
-              <a href="#" class="project-overlay-btn" aria-label="Live demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-              <a href="#" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono text-accent uppercase tracking-widest">E-commerce</span>
-              <span class="text-xs text-neutral-600">2024</span>
-            </div>
-            <h3 class="font-heading text-xl font-bold text-white mb-2">ShopSphere</h3>
-            <p class="text-neutral-400 text-sm leading-relaxed mb-4">A high-performance e-commerce platform with real-time inventory, Stripe payments, and admin dashboard.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-tag">Next.js</span><span class="tech-tag">Stripe</span><span class="tech-tag">MongoDB</span><span class="tech-tag">Redis</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 5 -->
-        <article class="project-card reveal" data-category="web design" aria-label="Project: Pulse Dashboard">
-          <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-cyan-900 to-sky-900 flex items-center justify-center">
-              <i class="fa-solid fa-gauge-high text-6xl text-cyan-300/40"></i>
-            </div>
-            <div class="project-overlay">
-              <a href="#" class="project-overlay-btn" aria-label="Live demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-              <a href="#" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono text-accent uppercase tracking-widest">Dashboard</span>
-              <span class="text-xs text-neutral-600">2024</span>
-            </div>
-            <h3 class="font-heading text-xl font-bold text-white mb-2">Pulse Dashboard</h3>
-            <p class="text-neutral-400 text-sm leading-relaxed mb-4">Analytics SaaS dashboard with real-time metrics, custom reports, and team collaboration tools.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-tag">React</span><span class="tech-tag">D3.js</span><span class="tech-tag">GraphQL</span><span class="tech-tag">AWS</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 6 -->
-        <article class="project-card reveal" data-category="mobile design" aria-label="Project: ZenMind">
-          <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-purple-900 to-fuchsia-900 flex items-center justify-center">
-              <i class="fa-solid fa-brain text-6xl text-purple-300/40"></i>
-            </div>
-            <div class="project-overlay">
-              <a href="#" class="project-overlay-btn" aria-label="Live demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-              <a href="#" class="project-overlay-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <div class="p-5">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-mono text-accent uppercase tracking-widest">Mobile / Design</span>
-              <span class="text-xs text-neutral-600">2023</span>
-            </div>
-            <h3 class="font-heading text-xl font-bold text-white mb-2">ZenMind</h3>
-            <p class="text-neutral-400 text-sm leading-relaxed mb-4">Mindfulness app with guided meditation, mood tracking, and personalized insights powered by ML.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="tech-tag">Flutter</span><span class="tech-tag">Python</span><span class="tech-tag">TensorFlow</span>
+              <span class="tech-tag">Next.js</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Python</span><span class="tech-tag">PostgreSQL</span>
             </div>
           </div>
         </article>
@@ -622,9 +731,12 @@
 
       <!-- View All -->
       <div class="reveal text-center mt-12">
-        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-neutral-400 hover:text-accent-light transition-colors duration-200 group">
+        <a href="https://github.com/PrasidBhusal10" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border font-mono text-sm font-medium transition-all duration-300 group"
+          style="border-color:rgba(124,58,237,0.4); color:#4A437A; background:rgba(124,58,237,0.06);">
+          <i class="fa-brands fa-github text-accent"></i>
           View all projects on GitHub
-          <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform duration-200"></i>
+          <i class="fa-solid fa-arrow-right text-accent group-hover:translate-x-1 transition-transform duration-200"></i>
         </a>
       </div>
     </div>
@@ -642,64 +754,33 @@
 
         <div class="space-y-10">
 
-          <!-- Job 1 -->
+          <!-- Research Role -->
           <div class="reveal md:grid md:grid-cols-[200px_1fr] gap-10 items-start">
             <div class="mb-2 md:mb-0 text-right">
-              <span class="font-mono text-xs text-neutral-500">2024 — Present</span>
+              <span class="font-mono text-xs text-neutral-500">Sep. 2025 — Present</span>
             </div>
             <div class="relative pl-8 md:pl-12">
-              <div class="hidden md:block absolute left-0 top-2 w-3 h-3 rounded-full bg-accent ring-4 ring-accent/20 -translate-x-[6.5px]"></div>
-              <div class="exp-card">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 class="font-heading text-xl font-bold text-white">Senior Full Stack Developer</h3>
-                  <span class="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent border border-accent/20 font-mono">Full-time</span>
-                </div>
-                <p class="text-accent-light font-medium mb-3">TechNova Inc. · Remote</p>
-                <p class="text-neutral-400 text-sm leading-relaxed mb-4">Lead development of the core SaaS platform serving 50,000+ users. Architected micro-service infrastructure, reduced page load times by 60%, and mentored a team of 4 junior developers.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="tech-tag">Next.js</span><span class="tech-tag">AWS</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">Docker</span>
-                </div>
+              <div
+                class="hidden md:block absolute left-0 top-2 w-3 h-3 rounded-full bg-accent ring-4 ring-accent/20 -translate-x-[6.5px]">
               </div>
-            </div>
-          </div>
-
-          <!-- Job 2 -->
-          <div class="reveal md:grid md:grid-cols-[200px_1fr] gap-10 items-start">
-            <div class="mb-2 md:mb-0 text-right">
-              <span class="font-mono text-xs text-neutral-500">2022 — 2024</span>
-            </div>
-            <div class="relative pl-8 md:pl-12">
-              <div class="hidden md:block absolute left-0 top-2 w-3 h-3 rounded-full bg-neutral-600 ring-4 ring-neutral-600/20 -translate-x-[6.5px]"></div>
               <div class="exp-card">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 class="font-heading text-xl font-bold text-white">Frontend Developer</h3>
-                  <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 text-neutral-400 border border-neutral-700 font-mono">Full-time</span>
+                  <h3 class="font-heading text-xl font-bold text-white">Undergraduate Research Assistant</h3>
+                  <span
+                    class="text-xs px-2 py-1 rounded-full bg-accent/10 text-accent border border-accent/20 font-mono">Research</span>
                 </div>
-                <p class="text-accent-light font-medium mb-3">Pixel Labs · Hybrid</p>
-                <p class="text-neutral-400 text-sm leading-relaxed mb-4">Built and maintained React applications for fintech clients. Implemented design system from scratch, improved test coverage from 30% to 85%, and delivered 15+ client projects on time.</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="tech-tag">React</span><span class="tech-tag">TypeScript</span><span class="tech-tag">GraphQL</span><span class="tech-tag">Figma</span>
-                </div>
-              </div>
-            </div>
-          </div>
+                <p class="font-semibold text-lg mb-1" style="color:#1C1838">Predictive Load-Shedding for Off-Grid SCADA</p>
+                <p class="font-mono text-sm mb-4 font-medium" style="color:#5B21B6">Texas Tech University · Lubbock, TX</p>
 
-          <!-- Job 3 -->
-          <div class="reveal md:grid md:grid-cols-[200px_1fr] gap-10 items-start">
-            <div class="mb-2 md:mb-0 text-right">
-              <span class="font-mono text-xs text-neutral-500">2021 — 2022</span>
-            </div>
-            <div class="relative pl-8 md:pl-12">
-              <div class="hidden md:block absolute left-0 top-2 w-3 h-3 rounded-full bg-neutral-600 ring-4 ring-neutral-600/20 -translate-x-[6.5px]"></div>
-              <div class="exp-card">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <h3 class="font-heading text-xl font-bold text-white">Junior Web Developer</h3>
-                  <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 text-neutral-400 border border-neutral-700 font-mono">Internship</span>
-                </div>
-                <p class="text-accent-light font-medium mb-3">StartupHub · On-site</p>
-                <p class="text-neutral-400 text-sm leading-relaxed mb-4">Developed client websites and internal tools. Gained hands-on experience with modern web technologies and agile workflows in a fast-paced startup environment.</p>
+
+                <ul class="text-neutral-400 text-sm leading-relaxed mb-4 space-y-2 list-none">
+                  <li class="flex gap-2"><span class="text-accent mt-0.5">•</span>Developed a predictive load-shedding algorithm fusing OpenWeatherMap forecasts with a calibrated lead-acid discharge model to anticipate solar deficits.</li>
+                  <li class="flex gap-2"><span class="text-accent mt-0.5">•</span>Designed the control logic with hysteresis and rolling-average filtering, reaching 95% decision consistency and under 0.1% false shutdowns across 500+ simulated scenarios.</li>
+                  <li class="flex gap-2"><span class="text-accent mt-0.5">•</span>Cut depth of discharge 33% versus conventional low-voltage disconnect (LVD), extending estimated battery cycle life 50% in simulation.</li>
+                </ul>
                 <div class="flex flex-wrap gap-2">
-                  <span class="tech-tag">JavaScript</span><span class="tech-tag">Node.js</span><span class="tech-tag">MongoDB</span>
+                  <span class="tech-tag">Python</span><span class="tech-tag">SCADA</span><span
+                    class="tech-tag">OpenWeatherMap API</span><span class="tech-tag">Data Modeling</span>
                 </div>
               </div>
             </div>
@@ -716,59 +797,70 @@
       <div class="section-label reveal">Background</div>
       <h2 class="reveal font-heading text-4xl sm:text-5xl font-bold text-white mt-3 mb-16">Education</h2>
 
-      <div class="grid md:grid-cols-2 gap-6">
+      <div class="grid gap-6">
         <div class="reveal edu-card">
           <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0">
+            <div
+              class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0">
               <i class="fa-solid fa-graduation-cap text-accent"></i>
             </div>
-            <div>
-              <h3 class="font-heading text-lg font-bold text-white">B.Sc. Computer Science</h3>
-              <p class="text-accent-light text-sm font-medium mt-1">Tribhuvan University</p>
-              <p class="text-neutral-500 text-sm mt-1 font-mono">2018 — 2022</p>
-              <p class="text-neutral-400 text-sm mt-3 leading-relaxed">Focused on software engineering, algorithms, and database systems. Graduated with Distinction. Final project: AI-powered task management system.</p>
-            </div>
-          </div>
-        </div>
+            <div class="flex-1">
+              <h3 class="font-heading text-lg font-bold text-white">Bachelor of Science in Computer Science</h3>
+              <p class="text-accent-light text-sm font-medium mt-1">Texas Tech University · Lubbock, Texas</p>
+              <p class="text-neutral-500 text-sm mt-1 font-mono">2024 — 2028</p>
+              <div class="mt-5 space-y-5">
+                <p class="text-neutral-500 text-xs font-mono uppercase tracking-widest">Relevant Coursework</p>
 
-        <div class="reveal edu-card">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-certificate text-accent"></i>
-            </div>
-            <div>
-              <h3 class="font-heading text-lg font-bold text-white">Full Stack Web Development</h3>
-              <p class="text-accent-light text-sm font-medium mt-1">Meta Professional Certificate</p>
-              <p class="text-neutral-500 text-sm mt-1 font-mono">2022</p>
-              <p class="text-neutral-400 text-sm mt-3 leading-relaxed">Advanced React, Node.js, databases, and deployment. 9-course specialization with capstone project building a full-featured social media platform.</p>
-            </div>
-          </div>
-        </div>
+                <!-- Fall 2024 -->
+                <div>
+                  <p class="text-xs font-mono font-semibold text-accent mb-2">Fall 2024</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="tech-tag">ENGL 1301: Essentials of College Rhetoric</span>
+                    <span class="tech-tag">CHEM 1307: Principles of Chemistry I</span>
+                    <span class="tech-tag">ENGR 1330: Computational Thinking with Data Science</span>
+                    <span class="tech-tag">MATH 1451: Calculus I with Applications</span>
+                    <span class="tech-tag">POLS 2306: Texas Politics & Topics</span>
+                    <span class="tech-tag">SOC 1301: Introduction to Sociology</span>
+                  </div>
+                </div>
 
-        <div class="reveal edu-card">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0">
-              <i class="fa-brands fa-aws text-accent"></i>
-            </div>
-            <div>
-              <h3 class="font-heading text-lg font-bold text-white">AWS Solutions Architect</h3>
-              <p class="text-accent-light text-sm font-medium mt-1">Amazon Web Services</p>
-              <p class="text-neutral-500 text-sm mt-1 font-mono">2023</p>
-              <p class="text-neutral-400 text-sm mt-3 leading-relaxed">Associate-level certification covering cloud architecture, security, databases, and deployment automation on AWS infrastructure.</p>
-            </div>
-          </div>
-        </div>
+                <!-- Spring 2025 -->
+                <div>
+                  <p class="text-xs font-mono font-semibold text-accent mb-2">Spring 2025</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="tech-tag">CHEM 1107: Experimental Chemistry I</span>
+                    <span class="tech-tag">CS 1382: Discrete Computational Structures</span>
+                    <span class="tech-tag">ENGR 1110: Engineering Seminar</span>
+                    <span class="tech-tag">ENGR 1320: Bio-Inspired Design</span>
+                    <span class="tech-tag">MATH 1452: Calculus II with Applications</span>
+                    <span class="tech-tag">PHYS 1408: Principles of Physics I</span>
+                  </div>
+                </div>
 
-        <div class="reveal edu-card">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0">
-              <i class="fa-solid fa-robot text-accent"></i>
-            </div>
-            <div>
-              <h3 class="font-heading text-lg font-bold text-white">Machine Learning Specialization</h3>
-              <p class="text-accent-light text-sm font-medium mt-1">Coursera / Stanford Online</p>
-              <p class="text-neutral-500 text-sm mt-1 font-mono">2023</p>
-              <p class="text-neutral-400 text-sm mt-3 leading-relaxed">Supervised and unsupervised learning, neural networks, and best practices for building ML systems with Andrew Ng.</p>
+                <!-- Fall 2025 -->
+                <div>
+                  <p class="text-xs font-mono font-semibold text-accent mb-2">Fall 2025</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="tech-tag">CS 1412: Programming Principles</span>
+                    <span class="tech-tag">ECE 2372: Modern Digital System Design</span>
+                    <span class="tech-tag">MATH 2450: Calculus III with Applications</span>
+                    <span class="tech-tag">PHYS 2401: Principles of Physics II</span>
+                    <span class="tech-tag">HONS 0001: HEPlus</span>
+                  </div>
+                </div>
+
+                <!-- Spring 2026 -->
+                <div>
+                  <p class="text-xs font-mono font-semibold text-accent mb-2">Spring 2026</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="tech-tag">CS 2413: Data Structures</span>
+                    <span class="tech-tag">CS 3350: Computer Organization & Assembly Language</span>
+                    <span class="tech-tag">CS 3383: Theory of Automata</span>
+                    <span class="tech-tag">ENGR 2392: Engineering Ethics and Its Impact on Society</span>
+                    <span class="tech-tag">MATH 3342: Math Statistics for Engineers/Scientists</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -776,82 +868,14 @@
     </div>
   </section>
 
-  <!-- ===================== TESTIMONIALS ===================== -->
-  <section id="testimonials" class="py-32 px-6 bg-neutral-900/30" aria-label="Testimonials">
-    <div class="max-w-6xl mx-auto">
-      <div class="section-label reveal">Social Proof</div>
-      <h2 class="reveal font-heading text-4xl sm:text-5xl font-bold text-white mt-3 mb-16">What people say</h2>
-
-      <div class="grid md:grid-cols-3 gap-6">
-
-        <div class="reveal testimonial-card">
-          <div class="flex gap-1 mb-4">
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-          </div>
-          <p class="text-neutral-300 text-sm leading-relaxed mb-6 italic">"Prasid delivered our platform 2 weeks ahead of schedule. His attention to detail and ability to translate business requirements into elegant code is remarkable. Highly recommended."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">SK</div>
-            <div>
-              <div class="text-white text-sm font-semibold">Sarah Kim</div>
-              <div class="text-neutral-500 text-xs">CTO · TechNova Inc.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal testimonial-card">
-          <div class="flex gap-1 mb-4">
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-          </div>
-          <p class="text-neutral-300 text-sm leading-relaxed mb-6 italic">"Working with Prasid felt like having a full design and engineering team in one person. He brought creative solutions we hadn't even thought of. The UI is stunning."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white font-bold text-sm">MR</div>
-            <div>
-              <div class="text-white text-sm font-semibold">Marcus Reed</div>
-              <div class="text-neutral-500 text-xs">Founder · Pixel Labs</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal testimonial-card">
-          <div class="flex gap-1 mb-4">
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-            <i class="fa-solid fa-star text-amber-400 text-sm"></i>
-          </div>
-          <p class="text-neutral-300 text-sm leading-relaxed mb-6 italic">"Exceptional developer and communicator. Prasid rebuilt our entire frontend from scratch, improving performance by 70% and making the codebase maintainable for our in-house team."</p>
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-rose-500 to-pink-600 flex items-center justify-center text-white font-bold text-sm">AJ</div>
-            <div>
-              <div class="text-white text-sm font-semibold">Aisha Johnson</div>
-              <div class="text-neutral-500 text-xs">Product Lead · ShopSphere</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- ===================== CONTACT ===================== -->
   <section id="contact" class="py-32 px-6" aria-label="Contact">
     <div class="max-w-4xl mx-auto">
       <div class="section-label reveal text-center mx-auto">Contact</div>
-      <h2 class="reveal font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-white mt-3 mb-6 text-center">
-        Let's build something<br /><span class="text-gradient">great together</span>
+      <h2 class="reveal font-heading text-4xl sm:text-5xl md:text-6xl font-bold text-white mt-3 mb-14 text-center">
+        Ping Me <span class="text-gradient">Anytime</span>
       </h2>
-      <p class="reveal text-neutral-400 text-center mb-14 max-w-lg mx-auto leading-relaxed">
-        Whether you have a project in mind, a question, or just want to say hi — my inbox is always open.
-      </p>
 
       <div class="reveal grid md:grid-cols-2 gap-10">
         <!-- Contact Info -->
@@ -861,8 +885,10 @@
             <div>
               <p class="text-neutral-500 text-xs font-mono uppercase tracking-widest mb-1">Email</p>
               <div class="flex items-center gap-2">
-                <a href="mailto:prasidbhusal07@gmail.com" class="text-white hover:text-accent-light transition-colors">prasidbhusal07@gmail.com</a>
-                <button id="copy-email-btn" aria-label="Copy email address" title="Copy email" class="text-neutral-600 hover:text-accent transition-colors duration-200">
+                <a href="mailto:prasidbhusal07@gmail.com"
+                  class="text-white hover:text-accent-light transition-colors">prasidbhusal07@gmail.com</a>
+                <button id="copy-email-btn" aria-label="Copy email address" title="Copy email"
+                  class="text-neutral-600 hover:text-accent transition-colors duration-200">
                   <i class="fa-regular fa-copy text-sm" id="copy-icon"></i>
                 </button>
               </div>
@@ -873,7 +899,7 @@
             <div class="contact-icon"><i class="fa-solid fa-location-dot text-accent"></i></div>
             <div>
               <p class="text-neutral-500 text-xs font-mono uppercase tracking-widest mb-1">Location</p>
-              <p class="text-white">Nepal · Open to Remote</p>
+              <p class="text-white">Lubbock, Texas</p>
             </div>
           </div>
 
@@ -881,16 +907,18 @@
             <div class="contact-icon"><i class="fa-solid fa-circle text-emerald-400 text-xs"></i></div>
             <div>
               <p class="text-neutral-500 text-xs font-mono uppercase tracking-widest mb-1">Status</p>
-              <p class="text-white">Available for freelance & full-time</p>
+              <p class="text-white">Available for internship</p>
             </div>
           </div>
 
           <!-- Socials -->
           <div class="flex gap-3 pt-4">
-            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-btn"><i class="fa-brands fa-github"></i></a>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="https://dribbble.com/" target="_blank" rel="noopener noreferrer" aria-label="Dribbble" class="social-btn"><i class="fa-brands fa-dribbble"></i></a>
+            <a href="https://github.com/PrasidBhusal10" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+              class="social-btn"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/prasidbhusal/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://x.com/Prasidbhusal1" target="_blank" rel="noopener noreferrer" aria-label="X"
+              class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
           </div>
         </div>
 
@@ -898,11 +926,13 @@
         <form id="contact-form" class="space-y-4" aria-label="Contact form" novalidate>
           <div>
             <label for="form-name" class="block text-sm font-medium text-neutral-400 mb-2">Name</label>
-            <input id="form-name" name="name" type="text" required placeholder="Your name" class="form-input" aria-required="true" />
+            <input id="form-name" name="name" type="text" required placeholder="Your name" class="form-input"
+              aria-required="true" />
           </div>
           <div>
             <label for="form-email" class="block text-sm font-medium text-neutral-400 mb-2">Email</label>
-            <input id="form-email" name="email" type="email" required placeholder="your@email.com" class="form-input" aria-required="true" />
+            <input id="form-email" name="email" type="email" required placeholder="your@email.com" class="form-input"
+              aria-required="true" />
           </div>
           <div>
             <label for="form-subject" class="block text-sm font-medium text-neutral-400 mb-2">Subject</label>
@@ -910,9 +940,11 @@
           </div>
           <div>
             <label for="form-message" class="block text-sm font-medium text-neutral-400 mb-2">Message</label>
-            <textarea id="form-message" name="message" required rows="4" placeholder="Tell me about your project..." class="form-input resize-none" aria-required="true"></textarea>
+            <textarea id="form-message" name="message" required rows="4" placeholder="Tell me about your project..."
+              class="form-input resize-none" aria-required="true"></textarea>
           </div>
-          <button type="submit" id="submit-btn" class="w-full btn-primary flex items-center justify-center gap-2 py-3 rounded-xl bg-accent text-white font-medium hover:bg-violet-600 transition-all duration-300">
+          <button type="submit" id="submit-btn"
+            class="w-full btn-primary flex items-center justify-center gap-2 py-3 rounded-xl bg-accent text-white font-medium hover:bg-violet-600 transition-all duration-300">
             <span id="btn-text">Send Message</span>
             <i class="fa-solid fa-paper-plane text-sm" id="btn-icon"></i>
           </button>
@@ -923,25 +955,33 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
-  <footer class="py-10 px-6 border-t border-neutral-800" role="contentinfo">
+  <footer class="py-10 px-6 border-t border-neutral-700" role="contentinfo">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="font-heading font-bold text-white">PB<span class="text-accent">.</span></div>
-      <p class="text-neutral-600 text-sm font-mono">
+      <a href="#hero" class="font-heading font-bold text-xl hover:text-accent transition-colors duration-200" style="color:#1C1838">PB<span class="text-accent">.</span></a>
+      <p class="text-sm font-mono" style="color:#1C1838">
         © <span id="year"></span> Prasid Bhusal · Built with passion
       </p>
       <div class="flex gap-4">
-        <a href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="text-neutral-600 hover:text-neutral-300 transition-colors text-lg"><i class="fa-brands fa-github"></i></a>
-        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-neutral-600 hover:text-neutral-300 transition-colors text-lg"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="text-neutral-600 hover:text-neutral-300 transition-colors text-lg"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://github.com/PrasidBhusal10" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+          class="transition-colors text-lg hover:text-accent" style="color:#1C1838"><i
+            class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/prasidbhusal/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+          class="transition-colors text-lg hover:text-accent" style="color:#1C1838"><i
+            class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://x.com/Prasidbhusal1" target="_blank" rel="noopener noreferrer" aria-label="X"
+          class="transition-colors text-lg hover:text-accent" style="color:#1C1838"><i
+            class="fa-brands fa-x-twitter"></i></a>
       </div>
     </div>
   </footer>
 
   <!-- Back to Top -->
-  <button id="back-to-top" aria-label="Back to top" class="fixed bottom-8 right-8 w-10 h-10 rounded-xl bg-accent text-white flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-violet-600 z-40">
+  <button id="back-to-top" aria-label="Back to top"
+    class="fixed bottom-8 right-8 w-10 h-10 rounded-xl bg-accent text-white flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-violet-600 z-40">
     <i class="fa-solid fa-arrow-up text-sm"></i>
   </button>
 
   <script src="script.js"></script>
 </body>
+
 </html>

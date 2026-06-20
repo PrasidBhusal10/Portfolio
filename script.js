@@ -2,11 +2,44 @@
    PORTFOLIO — script.js
    =================================== */
 
+// Always start at top on page load / refresh
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+window.scrollTo(0, 0);
+
+// ── Conference photo upload ───────────────────────────────
+(function () {
+  const input   = document.getElementById('conf-upload');
+  const img     = document.getElementById('conf-img');
+  const caption = document.getElementById('conf-caption');
+  const ph      = document.getElementById('conf-placeholder');
+  if (!input) return;
+  input.addEventListener('change', function () {
+    const file = this.files[0];
+    if (!file) return;
+    img.src = URL.createObjectURL(file);
+    img.classList.remove('hidden');
+    if (ph) ph.style.display = 'none';
+    if (caption) caption.style.display = 'block';
+  });
+  if (img) {
+    img.addEventListener('load', function () {
+      if (img.naturalWidth > 0) {
+        img.classList.remove('hidden');
+        if (ph) ph.style.display = 'none';
+        if (caption) caption.style.display = 'block';
+      }
+    });
+  }
+})();
+
 // ── Loader — premium animated sequence ──────────────────
 (function initLoader() {
   const bar     = document.getElementById('ldr-bar');
   const counter = document.getElementById('ldr-counter');
+  const ring    = document.getElementById('ldr-ring');
   const loader  = document.getElementById('loader');
+  const CIRC    = 263.9;
   if (!loader) return;
 
   // Ease-in-out quad for a natural-feeling counter
@@ -23,8 +56,9 @@
     step++;
     const progress = Math.round(easeInOut(step / STEPS) * 100);
 
-    if (bar)     bar.style.width = progress + '%';
-    if (counter) counter.textContent = String(progress).padStart(2, '0') + '%';
+    if (bar) bar.style.width = progress + '%';
+    if (ring) ring.style.strokeDashoffset = CIRC * (1 - progress / 100);
+    if (counter) counter.textContent = String(progress).padStart(2, '0');
 
     if (step >= STEPS) {
       clearInterval(timer);
@@ -36,21 +70,23 @@
     if (!loader) return;
     loader.classList.add('ldr-exit');
     setTimeout(() => {
+      loader.style.display = 'none';
       loader.remove();
-      // Fire hero entrance animations
       document.querySelectorAll('.name-char').forEach(el => el.classList.add('visible'));
       document.querySelectorAll('.name-word').forEach(el => el.classList.add('visible'));
       document.querySelectorAll('.hero-item').forEach(el => el.classList.add('visible'));
-      // Start matrix rain canvas
       initParticles();
-      // Start typewriter
       initTypewriter();
-      // Start terminal typing
       initTerminal();
-      // Start HUD clock
       initHudClock();
-    }, 850); // matches ldrCurtainUp duration
+    }, 650);
   }
+
+  // Hard failsafe — if something goes wrong, remove loader after 5s
+  setTimeout(() => {
+    const l = document.getElementById('loader');
+    if (l) { l.style.display = 'none'; l.remove(); }
+  }, 5000);
 })();
 
 // ── Footer year ─────────────────────────────────────────
@@ -87,24 +123,6 @@ themeBtn?.addEventListener('click', () => {
   setTheme(next);
 });
 
-// ── Cursor Glow ─────────────────────────────────────────
-const cursorGlow = document.getElementById('cursor-glow');
-let cursorVisible = false;
-
-document.addEventListener('mousemove', (e) => {
-  if (!cursorGlow) return;
-  cursorGlow.style.left = e.clientX + 'px';
-  cursorGlow.style.top = e.clientY + 'px';
-  if (!cursorVisible) {
-    cursorGlow.style.opacity = '1';
-    cursorVisible = true;
-  }
-});
-
-document.addEventListener('mouseleave', () => {
-  if (cursorGlow) cursorGlow.style.opacity = '0';
-  cursorVisible = false;
-});
 
 // ── Navbar Scroll Behavior ──────────────────────────────
 const navbar = document.getElementById('navbar');
@@ -191,20 +209,22 @@ document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el))
 const skillTabs = document.querySelectorAll('.skill-tab');
 const skillCards = document.querySelectorAll('.skill-card');
 
+function applySkillFilter(selected) {
+  skillCards.forEach((card) => {
+    const show = selected === 'all' || card.dataset.category === selected;
+    card.classList.toggle('hidden-skill', !show);
+    if (show) revealObserver.observe(card);
+  });
+}
+
+// Default: show only languages
+applySkillFilter('languages');
+
 skillTabs.forEach((tab) => {
   tab.addEventListener('click', () => {
     skillTabs.forEach((t) => t.classList.remove('active'));
     tab.classList.add('active');
-    const selected = tab.dataset.tab;
-
-    skillCards.forEach((card) => {
-      const cat = card.dataset.category;
-      const show = selected === 'all' || cat === selected;
-      card.classList.toggle('hidden-skill', !show);
-
-      // Re-observe so bars animate when revealed
-      if (show) revealObserver.observe(card);
-    });
+    applySkillFilter(tab.dataset.tab);
   });
 });
 
@@ -304,25 +324,44 @@ form?.addEventListener('submit', async (e) => {
   btnText.textContent = 'Sending…';
   btnIcon.className = 'fa-solid fa-circle-notch fa-spin text-sm';
 
-  // Simulate send (replace with real Formspree endpoint)
-  await new Promise((r) => setTimeout(r, 1500));
+  try {
+    const res = await fetch('https://formspree.io/f/xkoadern', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: form.querySelector('#form-name').value.trim(),
+        email: form.querySelector('#form-email').value.trim(),
+        subject: form.querySelector('#form-subject').value.trim(),
+        message: form.querySelector('#form-message').value.trim(),
+      }),
+    });
 
-  // Success
-  btnText.textContent = 'Message Sent!';
-  btnIcon.className = 'fa-solid fa-check text-sm';
-  submitBtn.style.background = '#059669';
-  feedback.textContent = "Thanks for reaching out! I'll get back to you within 24 hours.";
-  feedback.className = 'text-center text-sm text-emerald-400';
-  feedback.classList.remove('hidden');
-  form.reset();
-
-  setTimeout(() => {
-    submitBtn.disabled = false;
+    if (res.ok) {
+      btnText.textContent = 'Message Sent!';
+      btnIcon.className = 'fa-solid fa-check text-sm';
+      submitBtn.style.background = '#059669';
+      feedback.textContent = "Thanks for reaching out! I'll get back to you within 24 hours.";
+      feedback.className = 'text-center text-sm text-emerald-400';
+      feedback.classList.remove('hidden');
+      form.reset();
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnIcon.className = 'fa-solid fa-paper-plane text-sm';
+        submitBtn.style.background = '';
+        feedback.classList.add('hidden');
+      }, 4000);
+    } else {
+      throw new Error('Failed');
+    }
+  } catch {
     btnText.textContent = 'Send Message';
     btnIcon.className = 'fa-solid fa-paper-plane text-sm';
-    submitBtn.style.background = '';
-    feedback.classList.add('hidden');
-  }, 4000);
+    submitBtn.disabled = false;
+    feedback.textContent = 'Something went wrong. Please try again or email me directly.';
+    feedback.className = 'text-center text-sm text-red-400';
+    feedback.classList.remove('hidden');
+  }
 });
 
 // ── Smooth anchor scrolling ──────────────────────────────
@@ -342,7 +381,6 @@ function initTypewriter() {
 
   const roles = [
     'Full Stack Developer',
-    'UI / UX Enthusiast',
     'Problem Solver',
     'Creative Coder',
     'Open Source Contributor',
@@ -393,58 +431,48 @@ function initParticles() {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  const FONT_SIZE = 13;
-  // Code-flavored character set
-  const CHARS = '01アイウエオ{}[]<>/\\*+=;:#@$%&!?0123456789ABCDEFабвгде'.split('');
+  const FONT_SIZE = 18; // larger = fewer columns = less work
+  const CHARS = '01{}[]<>/\\*+=;:#@$%&!?ABCDEFабвгде'.split('');
+  const BG    = 'rgba(202,196,236,0.09)';
+  const FPS   = 24;
+  const FRAME = 1000 / FPS;
 
-  // Lavender background color to use for the fade trail
-  const BG = 'rgba(202,196,236,0.07)';
-
-  let cols, drops;
+  let cols, drops, lastTime = 0;
 
   function resize() {
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
     cols  = Math.floor(canvas.width / FONT_SIZE);
-    drops = Array.from({ length: cols }, () => -Math.random() * 60);
+    drops = Array.from({ length: cols }, () => -Math.random() * 40);
   }
   resize();
-  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('resize', () => { clearTimeout(resize._t); resize._t = setTimeout(resize, 200); }, { passive: true });
 
-  function draw() {
-    // Fade rather than clear — creates the trailing effect
+  function draw(ts) {
+    requestAnimationFrame(draw);
+    if (ts - lastTime < FRAME) return; // throttle to 24 fps
+    lastTime = ts;
+
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
 
-    drops.forEach((drop, i) => {
+    for (let i = 0; i < cols; i++) {
+      const drop = drops[i];
+      const y    = drop * FONT_SIZE;
+      if (y < 0) { drops[i] += 0.3; continue; }
+
       const char  = CHARS[Math.floor(Math.random() * CHARS.length)];
-      const x     = i * FONT_SIZE;
-      const y     = drop * FONT_SIZE;
-      // Lead character is brighter
-      const alpha = drop > 0 ? (Math.random() * 0.14 + 0.04) : 0;
-      const leadAlpha = drop > 0 ? 0.45 : 0;
-
-      // Faint trail characters
+      const alpha = Math.random() * 0.12 + 0.03;
       ctx.fillStyle = `rgba(80,30,180,${alpha})`;
-      ctx.fillText(char, x, y);
+      ctx.fillText(char, i * FONT_SIZE, y);
 
-      // Bright lead
-      if (Math.random() > 0.96) {
-        ctx.fillStyle = `rgba(124,58,237,${leadAlpha})`;
-        ctx.fillText(char, x, y);
-      }
-
-      // Reset drop to top when it goes off screen
-      if (y > canvas.height && Math.random() > 0.974) drops[i] = 0;
-      drops[i] += 0.4;
-    });
-
-    requestAnimationFrame(draw);
+      if (y > canvas.height && Math.random() > 0.97) drops[i] = 0;
+      drops[i] += 0.35;
+    }
   }
 
-  draw();
+  requestAnimationFrame(draw);
 }
 
 // ── Terminal Typing Animation ────────────────────────────

@@ -67,13 +67,14 @@ html { scroll-behavior: smooth; }
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* Curtain exit — slides up off screen */
+/* Fade exit */
 #loader.ldr-exit {
-  animation: ldrCurtainUp 0.85s cubic-bezier(0.76,0,0.24,1) forwards;
+  animation: ldrFadeOut 0.6s ease forwards;
+  pointer-events: none;
 }
-@keyframes ldrCurtainUp {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-100%); }
+@keyframes ldrFadeOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -136,10 +137,10 @@ html.dark .contact-icon { background: rgba(124,58,237,0.1); border-color: rgba(1
 html.dark .social-btn { background: rgba(255,255,255,0.35); border-color: rgba(124,58,237,0.2); color: #4A437A; }
 html.dark .social-btn:hover { background: #7C3AED; border-color: #7C3AED; color: #fff; }
 
-html.dark .skill-tab   { border-color: rgba(124,58,237,0.2); color: #6B659A; }
-html.dark .skill-tab:hover { color: #1C1838; }
-html.dark .filter-btn  { border-color: rgba(124,58,237,0.2); color: #6B659A; }
-html.dark .filter-btn:hover { color: #1C1838; }
+html.dark .skill-tab   { border-color: rgba(124,58,237,0.25); color: #1C1838; }
+html.dark .skill-tab:hover { color: #1C1838; border-color: rgba(124,58,237,0.5); }
+html.dark .filter-btn  { border-color: rgba(124,58,237,0.25); color: #1C1838; }
+html.dark .filter-btn:hover { color: #1C1838; border-color: rgba(124,58,237,0.5); }
 
 html.dark #back-to-top { background: #7C3AED; }
 
@@ -189,6 +190,38 @@ html.light .social-btn:hover { background: #7C3AED; border-color: #7C3AED; color
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Hero social buttons */
+.hero-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  color: #5B21B6;
+  background: rgba(124,58,237,0.12);
+  border: 1.5px solid rgba(124,58,237,0.35);
+  transition: all 0.22s ease;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.1);
+}
+.hero-social-btn:hover {
+  background: #7C3AED;
+  border-color: #7C3AED;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(124,58,237,0.4);
+}
+
+/* CPU chip pulse */
+.fallback-avatar svg {
+  animation: chipPulse 3s ease-in-out infinite;
+}
+@keyframes chipPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(124,58,237,0.4)); }
+  50%       { filter: drop-shadow(0 0 18px rgba(124,58,237,0.75)); }
 }
 
 /* ===================================
@@ -241,7 +274,9 @@ html.light .social-btn:hover { background: #7C3AED; border-color: #7C3AED; color
   position: relative;
   padding-bottom: 2px;
   color: #4A437A;
+  outline: none;
 }
+.nav-link:focus { outline: none; }
 .nav-link::after {
   content: '';
   position: absolute;
@@ -310,19 +345,28 @@ html.light #navbar.scrolled { background: rgba(250,250,250,0.95) !important; bor
 .section-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  gap: 10px;
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+  font-weight: 500;
   color: #7C3AED;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.22em;
+  padding: 6px 0 10px;
+  margin-bottom: 4px;
 }
 .section-label::before {
   content: '';
   display: inline-block;
-  width: 24px;
-  height: 1px;
+  width: 36px;
+  height: 3px;
   background: #7C3AED;
+  border-radius: 2px;
+}
+
+/* About section bio font */
+#about p {
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
 }
 
 /* ===================================
@@ -370,8 +414,8 @@ html.light #navbar.scrolled { background: rgba(250,250,250,0.95) !important; bor
 
 .skill-name {
   font-size: 0.75rem;
-  font-weight: 500;
-  color: #a1a1aa;
+  font-weight: 600;
+  color: #1C1838;
 }
 
 .skill-bar {
@@ -402,8 +446,8 @@ html.light #navbar.scrolled { background: rgba(250,250,250,0.95) !important; bor
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.skill-tab:hover { color: #fff; border-color: rgba(124,58,237,0.4); }
-.skill-tab.active { background: #7C3AED; border-color: #7C3AED; color: #fff; }
+.skill-tab:hover { color: #1C1838; border-color: rgba(124,58,237,0.4); }
+.skill-tab.active { background: #7C3AED; border-color: #7C3AED; color: #1C1838; font-weight: 700; }
 
 /* ===================================
    PROJECT CARDS
@@ -477,8 +521,8 @@ html.light #navbar.scrolled { background: rgba(250,250,250,0.95) !important; bor
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.filter-btn:hover { color: #fff; border-color: rgba(124,58,237,0.4); }
-.filter-btn.active { background: #7C3AED; border-color: #7C3AED; color: #fff; }
+.filter-btn:hover { color: #1C1838; border-color: rgba(124,58,237,0.4); }
+.filter-btn.active { background: #7C3AED; border-color: #7C3AED; color: #1C1838; font-weight: 700; }
 
 /* Tech Tags */
 .tech-tag {
@@ -855,11 +899,11 @@ body { overflow-x: hidden; }
   opacity: 1;
 }
 
-/* ── Name — Unbounded per-letter design ── */
+/* ── Name display ── */
 .name-display {
-  font-family: 'Unbounded', sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   line-height: 0.88;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 .name-row {
