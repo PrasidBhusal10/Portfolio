@@ -22,9 +22,10 @@ window.scrollTo(0, 0);
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   }
 
+  const isMobileLoader = window.innerWidth < 768;
   let step = 0;
   const STEPS    = 100;
-  const DURATION = 2400; // ms
+  const DURATION = isMobileLoader ? 1400 : 2400; // faster on mobile
   const INTERVAL = DURATION / STEPS;
 
   const timer = setInterval(() => {
@@ -33,7 +34,7 @@ window.scrollTo(0, 0);
 
     if (bar) bar.style.width = progress + '%';
     if (ring) ring.style.strokeDashoffset = CIRC * (1 - progress / 100);
-    if (counter) counter.textContent = String(progress).padStart(2, '0');
+    if (counter) counter.textContent = String(progress).padStart(2, '0') + '%';
 
     if (step >= STEPS) {
       clearInterval(timer);
@@ -50,9 +51,11 @@ window.scrollTo(0, 0);
       document.querySelectorAll('.name-char').forEach(el => el.classList.add('visible'));
       document.querySelectorAll('.name-word').forEach(el => el.classList.add('visible'));
       document.querySelectorAll('.hero-item').forEach(el => el.classList.add('visible'));
-      initParticles();
+
+      const isMobile = window.innerWidth < 768;
+      if (!isMobile) initParticles(); // skip heavy canvas on mobile
       initTypewriter();
-      initTerminal();
+      if (!isMobile) initTerminal();  // terminal panel hidden on mobile anyway
       initHudClock();
     }, 650);
   }
