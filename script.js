@@ -7,31 +7,6 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 if (window.location.hash) history.replaceState(null, '', window.location.pathname);
 window.scrollTo(0, 0);
 
-// ── Conference photo upload ───────────────────────────────
-(function () {
-  const input   = document.getElementById('conf-upload');
-  const img     = document.getElementById('conf-img');
-  const caption = document.getElementById('conf-caption');
-  const ph      = document.getElementById('conf-placeholder');
-  if (!input) return;
-  input.addEventListener('change', function () {
-    const file = this.files[0];
-    if (!file) return;
-    img.src = URL.createObjectURL(file);
-    img.classList.remove('hidden');
-    if (ph) ph.style.display = 'none';
-    if (caption) caption.style.display = 'block';
-  });
-  if (img) {
-    img.addEventListener('load', function () {
-      if (img.naturalWidth > 0) {
-        img.classList.remove('hidden');
-        if (ph) ph.style.display = 'none';
-        if (caption) caption.style.display = 'block';
-      }
-    });
-  }
-})();
 
 // ── Loader — premium animated sequence ──────────────────
 (function initLoader() {
@@ -128,19 +103,19 @@ themeBtn?.addEventListener('click', () => {
 const navbar = document.getElementById('navbar');
 const backToTop = document.getElementById('back-to-top');
 
+let scrollRAF = false;
 window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-
-  // Navbar glass effect
-  if (y > 60) navbar?.classList.add('scrolled');
-  else navbar?.classList.remove('scrolled');
-
-  // Back to top
-  if (y > 400) backToTop?.classList.add('visible');
-  else backToTop?.classList.remove('visible');
-
-  // Active nav highlighting
-  highlightActiveNav();
+  if (scrollRAF) return;
+  scrollRAF = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+    if (y > 60) navbar?.classList.add('scrolled');
+    else navbar?.classList.remove('scrolled');
+    if (y > 400) backToTop?.classList.add('visible');
+    else backToTop?.classList.remove('visible');
+    highlightActiveNav();
+    scrollRAF = false;
+  });
 }, { passive: true });
 
 backToTop?.addEventListener('click', () => {
@@ -296,8 +271,20 @@ const submitBtn = document.getElementById('submit-btn');
 const btnText = document.getElementById('btn-text');
 const btnIcon = document.getElementById('btn-icon');
 
+let lastSubmit = 0;
+const SUBMIT_COOLDOWN = 60000; // 1 minute between submissions
+
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  const now = Date.now();
+  if (now - lastSubmit < SUBMIT_COOLDOWN) {
+    const wait = Math.ceil((SUBMIT_COOLDOWN - (now - lastSubmit)) / 1000);
+    feedback.textContent = `Please wait ${wait}s before sending another message.`;
+    feedback.className = 'text-center text-sm text-red-400';
+    feedback.classList.remove('hidden');
+    return;
+  }
 
   const name = form.querySelector('#form-name').value.trim();
   const email = form.querySelector('#form-email').value.trim();
@@ -337,6 +324,7 @@ form?.addEventListener('submit', async (e) => {
     });
 
     if (res.ok) {
+      lastSubmit = Date.now();
       btnText.textContent = 'Message Sent!';
       btnIcon.className = 'fa-solid fa-check text-sm';
       submitBtn.style.background = '#059669';
@@ -374,9 +362,9 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// ── Typewriter ───────────────────────────────────────────
+// ── Role flip ────────────────────────────────────────────
 function initTypewriter() {
-  const el = document.getElementById('typewriter');
+  const el = document.getElementById('role-word');
   if (!el) return;
 
   const roles = [
@@ -385,44 +373,20 @@ function initTypewriter() {
     'Creative Coder',
     'Open Source Contributor',
   ];
-  let roleIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
-  let paused = false;
+  let index = 0;
 
-  function tick() {
-    if (paused) return;
-    const current = roles[roleIndex];
-
-    if (deleting) {
-      charIndex--;
-      el.textContent = current.slice(0, charIndex);
-      if (charIndex === 0) {
-        deleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        setTimeout(tick, 450);
-        return;
-      }
-      setTimeout(tick, 40);
-    } else {
-      charIndex++;
-      el.textContent = current.slice(0, charIndex);
-      if (charIndex === current.length) {
-        deleting = true;
-        setTimeout(tick, 2200);
-        return;
-      }
-      setTimeout(tick, 75);
-    }
+  function next() {
+    el.classList.add('flip-exit');
+    setTimeout(() => {
+      index = (index + 1) % roles.length;
+      el.textContent = roles[index];
+      el.classList.remove('flip-exit');
+      el.classList.add('flip-enter');
+      setTimeout(() => el.classList.remove('flip-enter'), 320);
+    }, 320);
   }
 
-  setTimeout(tick, 200);
-
-  // Pause when tab not visible to save resources
-  document.addEventListener('visibilitychange', () => {
-    paused = document.hidden;
-    if (!paused) tick();
-  });
+  setInterval(next, 2800);
 }
 
 // ── Matrix Rain Canvas ───────────────────────────────────
@@ -431,13 +395,13 @@ function initParticles() {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  const FONT_SIZE = 18; // larger = fewer columns = less work
+  const FONT_SIZE = 18;
   const CHARS = '01{}[]<>/\\*+=;:#@$%&!?ABCDEFабвгде'.split('');
   const BG    = 'rgba(202,196,236,0.09)';
   const FPS   = 24;
   const FRAME = 1000 / FPS;
 
-  let cols, drops, lastTime = 0;
+  let cols, drops, lastTime = 0, visible = true;
 
   function resize() {
     canvas.width  = canvas.offsetWidth;
@@ -448,9 +412,16 @@ function initParticles() {
   resize();
   window.addEventListener('resize', () => { clearTimeout(resize._t); resize._t = setTimeout(resize, 200); }, { passive: true });
 
+  // Pause when hero scrolls out of view
+  const heroObs = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0 });
+  heroObs.observe(canvas.closest('#hero') || canvas);
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', () => { visible = !document.hidden; });
+
   function draw(ts) {
     requestAnimationFrame(draw);
-    if (ts - lastTime < FRAME) return; // throttle to 24 fps
+    if (!visible || ts - lastTime < FRAME) return;
     lastTime = ts;
 
     ctx.fillStyle = BG;
@@ -463,7 +434,7 @@ function initParticles() {
       if (y < 0) { drops[i] += 0.3; continue; }
 
       const char  = CHARS[Math.floor(Math.random() * CHARS.length)];
-      const alpha = Math.random() * 0.12 + 0.03;
+      const alpha = (Math.random() * 0.12 + 0.03).toFixed(2);
       ctx.fillStyle = `rgba(80,30,180,${alpha})`;
       ctx.fillText(char, i * FONT_SIZE, y);
 

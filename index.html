@@ -14,12 +14,16 @@
     content="Full stack developer crafting high-performance, beautiful web experiences." />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Removed: Plus Jakarta Sans (unused), Inter 300 (unused), Lora 400 (unused) -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,500&family=Spectral:wght@500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
   <!-- Tailwind CDN -->
@@ -51,7 +55,9 @@
   </script>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha384-/o6I2CkkWC//PSjvWC/eYN7l3xM3tJm8ZzVkCOfp//W05QcE3mlGskpoHB6XqI+B"
+    crossorigin="anonymous" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -108,7 +114,7 @@
       </a>
 
       <!-- Desktop Links -->
-      <ul class="hidden md:flex items-center gap-6 text-sm font-medium uppercase tracking-wide flex-1 justify-center" role="list">
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium flex-1 justify-center" role="list">
         <li><a href="#hero" class="nav-link transition-colors duration-200">Home</a></li>
         <li><a href="#about" class="nav-link transition-colors duration-200">About</a></li>
         <li><a href="#skills" class="nav-link transition-colors duration-200">Skills</a></li>
@@ -142,7 +148,7 @@
 
     <!-- Mobile Menu — inline bg so it always matches lavender theme -->
     <div id="mobile-menu" class="md:hidden hidden mobile-menu-panel backdrop-blur-xl border-t" role="menu">
-      <ul class="flex flex-col px-6 py-5 gap-1 text-sm font-medium uppercase tracking-wide">
+      <ul class="flex flex-col px-6 py-5 gap-1 text-sm font-medium">
         <li><a href="#hero" class="mobile-link">Home</a></li>
         <li><a href="#about" class="mobile-link">About</a></li>
         <li><a href="#skills" class="mobile-link">Skills</a></li>
@@ -189,46 +195,38 @@
       <div>
         <!-- Terminal prompt eyebrow -->
 
-        <!-- Name — Unbounded font, per-letter stagger -->
-        <h1 class="name-display mb-5" aria-label="Prasid Bhusal">
-          <!-- PRASID — outlined stroke -->
-          <div class="name-row" aria-hidden="true">
-            <span class="name-char name-outline" style="--ci:0">P</span>
-            <span class="name-char name-outline" style="--ci:1">R</span>
-            <span class="name-char name-outline" style="--ci:2">A</span>
-            <span class="name-char name-outline" style="--ci:3">S</span>
-            <span class="name-char name-outline" style="--ci:4">I</span>
-            <span class="name-char name-outline" style="--ci:5">D</span>
-          </div>
-          <!-- separator sweep -->
-          <div class="name-sep hero-item" style="--delay:0.62s">
-            <div class="name-sep-line"></div>
-            <span class="name-sep-label">full stack developer</span>
-          </div>
-          <!-- BHUSAL — gradient fill -->
-          <div class="name-row" aria-hidden="true">
-            <span class="name-char name-filled" style="--ci:3">B</span>
-            <span class="name-char name-filled" style="--ci:4">H</span>
-            <span class="name-char name-filled" style="--ci:5">U</span>
-            <span class="name-char name-filled" style="--ci:6">S</span>
-            <span class="name-char name-filled" style="--ci:7">A</span>
-            <span class="name-char name-filled" style="--ci:8">L</span>
+        <!-- Name — Spectral Medium -->
+        <h1 class="name-display mb-6" aria-label="Prasid Bhusal">
+          <div class="name-spectral-wrap">
+            <div class="name-spectral-line name-char" style="--ci:0">
+              <span class="name-spectral-first">Prasid</span>
+            </div>
+            <div class="name-spectral-accent hero-item" style="--delay:0.55s">
+              <div class="name-spectral-rule"></div>
+              <span class="name-spectral-tag">Full Stack Developer</span>
+              <div class="name-spectral-rule"></div>
+            </div>
+            <div class="name-spectral-line name-char" style="--ci:2">
+              <span class="name-spectral-last">Bhusal</span>
+            </div>
           </div>
         </h1>
 
-        <!-- Terminal typewriter -->
-        <div class="hero-item flex items-center gap-2 mt-5 mb-5 h-8" style="--delay:0.6s">
+        <!-- Role flip -->
+        <div class="hero-item flex items-center gap-2 mt-5 mb-5" style="--delay:0.6s">
           <span class="font-mono text-accent font-bold">▶</span>
-          <span class="font-mono text-lg sm:text-xl" id="typewriter" style="color:#3B3270"></span>
-          <span class="typewriter-cursor text-accent text-xl">|</span>
+          <div class="role-flip-wrap">
+            <span class="role-flip-word" id="role-word">Full Stack Developer</span>
+          </div>
         </div>
 
         <!-- Code-comment description -->
-        <div class="hero-item font-mono text-sm leading-loose mb-8 max-w-lg" style="--delay:0.75s">
+        <div class="hero-item font-mono leading-relaxed mb-5 max-w-lg" style="--delay:0.75s;font-size:0.78rem">
           <span style="color:rgba(124,58,237,0.5)">/**</span><br />
-          <span class="pl-4" style="color:#1C1838">* Building fast &amp; beautiful digital products</span><br />
-          <span class="pl-4" style="color:#1C1838">* from elegant interfaces to robust backends.</span><br />
-          <span class="pl-4" style="color:#1C1838">* <span style="color:rgba(124,58,237,0.6)">@open-to</span> internships</span><br />
+          <span class="pl-4" style="color:#1C1838">* 💡 Passionate about building things people actually use.</span><br />
+          <span class="pl-4" style="color:#1C1838">* 🔬 Curious about research &amp; future tech.</span><br />
+          <span class="pl-4" style="color:#1C1838">* 🚀 Constantly learning, tinkering, and growing.</span><br />
+          <span class="pl-4" style="color:#1C1838">* <span style="color:rgba(124,58,237,0.6)">@open-to</span> <span style="color:#16a34a;font-weight:600">Internship</span></span><br />
           <span style="color:rgba(124,58,237,0.5)">*/</span>
         </div>
 
@@ -249,7 +247,7 @@
         </div>
 
         <!-- Socials -->
-        <div class="hero-item flex items-center gap-5 mt-8" style="--delay:1.05s">
+        <div class="hero-item flex items-center gap-5 mt-4" style="--delay:1.05s">
           <span style="font-family:'Fira Sans',sans-serif;font-weight:400;font-size:0.8rem;color:#5B4E8A;letter-spacing:0.05em">Find me on</span>
           <div class="w-6 h-px" style="background:rgba(124,58,237,0.4)"></div>
           <div class="flex items-center gap-3">
@@ -316,6 +314,7 @@
             <div class="relative w-full h-full rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-900">
               <!-- Profile image placeholder — replace src with your actual photo -->
               <img src="assets/images/profile.jpg" alt="Prasid Bhusal" class="w-full h-full object-cover"
+                width="400" height="400" loading="lazy" decoding="async"
                 onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-avatar').style.display='flex'" />
               <div class="fallback-avatar hidden w-full h-full items-center justify-center" style="background:#08060f">
                 <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="width:88%;height:88%">
@@ -645,8 +644,14 @@
         <!-- KickOff Alerts -->
         <article class="project-card reveal" data-category="fullstack web" aria-label="Project: KickOff Alerts">
           <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-green-900 to-emerald-900 flex items-center justify-center">
-              <i class="fa-solid fa-futbol text-6xl text-green-300/40"></i>
+            <div class="project-image flex items-center justify-center overflow-hidden" style="background:#0a1a0a;padding:0">
+              <img id="kickoff-banner" src="assets/images/kickoff-banner.jpg" alt="FIFA World Cup 2026"
+                class="w-full h-full object-cover" width="800" height="450"
+                loading="lazy" decoding="async"
+                onerror="this.style.display='none';this.parentElement.querySelector('.kickoff-fallback').style.display='flex'" />
+              <div class="kickoff-fallback w-full h-full items-center justify-center bg-gradient-to-br from-green-900 to-emerald-900" style="display:none">
+                <i class="fa-solid fa-futbol text-6xl text-green-300/40"></i>
+              </div>
             </div>
             <div class="project-overlay">
               <a href="https://www.kickoffalerts.com/" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="Live site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -656,7 +661,18 @@
           <div class="p-5">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono text-accent uppercase tracking-widest">Full Stack</span>
-              <span class="text-xs text-neutral-600">2025</span>
+              <div class="flex items-center gap-2">
+                <a href="https://github.com/PrasidBhusal10/KickOffAlerts" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg transition-all duration-200"
+                  style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.25);color:#5B21B6;">
+                  <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="https://www.kickoffalerts.com/" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg transition-all duration-200"
+                  style="background:#7C3AED;border:1px solid #7C3AED;color:#fff;">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Live
+                </a>
+              </div>
             </div>
             <h3 class="font-heading text-xl font-bold text-white mb-2">KickOff Alerts</h3>
             <ul class="text-neutral-400 text-sm leading-relaxed mb-4 space-y-1.5 list-none">
@@ -673,8 +689,14 @@
         <!-- EzeLinks -->
         <article class="project-card reveal" data-category="fullstack web" aria-label="Project: EzeLinks">
           <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-violet-900 to-indigo-900 flex items-center justify-center">
-              <i class="fa-solid fa-link text-6xl text-violet-300/40"></i>
+            <div class="project-image flex items-center justify-center overflow-hidden" style="background:#0a0a1a;padding:0">
+              <img src="assets/images/ezelinks.jpg" alt="EzeLinks URL Shortener"
+                class="w-full h-full object-cover" width="800" height="450"
+                loading="lazy" decoding="async"
+                onerror="this.style.display='none';this.parentElement.querySelector('.ezelinks-fallback').style.display='flex'" />
+              <div class="ezelinks-fallback w-full h-full items-center justify-center bg-gradient-to-br from-violet-900 to-indigo-900" style="display:none">
+                <i class="fa-solid fa-link text-6xl text-violet-300/40"></i>
+              </div>
             </div>
             <div class="project-overlay">
               <a href="https://ezelinks.com" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="Live site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -684,7 +706,18 @@
           <div class="p-5">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono text-accent uppercase tracking-widest">Full Stack</span>
-              <span class="text-xs text-neutral-600">2025</span>
+              <div class="flex items-center gap-2">
+                <a href="https://github.com/PrasidBhusal10/Ezelink" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg transition-all duration-200"
+                  style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.25);color:#5B21B6;">
+                  <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="https://ezelinks.com" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg transition-all duration-200"
+                  style="background:#7C3AED;border:1px solid #7C3AED;color:#fff;">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Live
+                </a>
+              </div>
             </div>
             <h3 class="font-heading text-xl font-bold text-white mb-2">EzeLinks</h3>
             <ul class="text-neutral-400 text-sm leading-relaxed mb-4 space-y-1.5 list-none">
@@ -702,8 +735,14 @@
         <!-- Kuik Resume -->
         <article class="project-card reveal" data-category="fullstack web" aria-label="Project: Kuik Resume">
           <div class="project-image-wrap">
-            <div class="project-image bg-gradient-to-br from-sky-900 to-cyan-900 flex items-center justify-center">
-              <i class="fa-solid fa-file-lines text-6xl text-sky-300/40"></i>
+            <div class="project-image flex items-center justify-center overflow-hidden" style="background:#060a14;padding:0">
+              <img src="assets/images/resu.png" alt="Kuik Resume Optimizer"
+                class="w-full h-full object-cover" width="800" height="450"
+                loading="lazy" decoding="async"
+                onerror="this.style.display='none';this.parentElement.querySelector('.kuik-fallback').style.display='flex'" />
+              <div class="kuik-fallback w-full h-full items-center justify-center bg-gradient-to-br from-sky-900 to-cyan-900" style="display:none">
+                <i class="fa-solid fa-file-lines text-6xl text-sky-300/40"></i>
+              </div>
             </div>
             <div class="project-overlay">
               <a href="https://kuikresume.com" target="_blank" rel="noopener noreferrer" class="project-overlay-btn" aria-label="Live site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -713,7 +752,18 @@
           <div class="p-5">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-mono text-accent uppercase tracking-widest">Full Stack</span>
-              <span class="text-xs text-neutral-600">2025</span>
+              <div class="flex items-center gap-2">
+                <a href="https://github.com/PrasidBhusal10/Kuik-Resume" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg transition-all duration-200"
+                  style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.25);color:#5B21B6;">
+                  <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a href="https://kuikresume.com" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-lg transition-all duration-200"
+                  style="background:#7C3AED;border:1px solid #7C3AED;color:#fff;">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Live
+                </a>
+              </div>
             </div>
             <h3 class="font-heading text-xl font-bold text-white mb-2">Kuik Resume</h3>
             <ul class="text-neutral-400 text-sm leading-relaxed mb-4 space-y-1.5 list-none">
@@ -936,11 +986,11 @@
           </div>
           <div>
             <label for="form-subject" class="block text-sm font-medium text-neutral-400 mb-2">Subject</label>
-            <input id="form-subject" name="subject" type="text" placeholder="Project inquiry" class="form-input" />
+            <input id="form-subject" name="subject" type="text" placeholder="Subject" class="form-input" />
           </div>
           <div>
             <label for="form-message" class="block text-sm font-medium text-neutral-400 mb-2">Message</label>
-            <textarea id="form-message" name="message" required rows="4" placeholder="Tell me about your project..."
+            <textarea id="form-message" name="message" required rows="4" placeholder="Open a Pull Request to My Inbox"
               class="form-input resize-none" aria-required="true"></textarea>
           </div>
           <button type="submit" id="submit-btn"
@@ -955,23 +1005,43 @@
   </section>
 
   <!-- ===================== FOOTER ===================== -->
-  <footer class="py-10 px-6 border-t border-neutral-700" role="contentinfo">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <a href="#hero" class="font-heading font-bold text-xl hover:text-accent transition-colors duration-200" style="color:#1C1838">PB<span class="text-accent">.</span></a>
-      <p class="text-sm font-mono" style="color:#1C1838">
-        © <span id="year"></span> Prasid Bhusal · Built with passion
-      </p>
-      <div class="flex gap-4">
-        <a href="https://github.com/PrasidBhusal10" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
-          class="transition-colors text-lg hover:text-accent" style="color:#1C1838"><i
-            class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/prasidbhusal/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-          class="transition-colors text-lg hover:text-accent" style="color:#1C1838"><i
-            class="fa-brands fa-linkedin-in"></i></a>
-        <a href="https://x.com/Prasidbhusal1" target="_blank" rel="noopener noreferrer" aria-label="X"
-          class="transition-colors text-lg hover:text-accent" style="color:#1C1838"><i
-            class="fa-brands fa-x-twitter"></i></a>
+  <footer class="footer-goog" role="contentinfo">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Follow us row -->
+      <div class="footer-follow-row">
+        <span class="footer-follow-label" style="color:#111111">Follow me</span>
+        <a href="https://github.com/PrasidBhusal10" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="footer-follow-icon" style="color:#111111"><i class="fa-brands fa-github"></i></a>
+        <a href="https://x.com/Prasidbhusal1" target="_blank" rel="noopener noreferrer" aria-label="X" class="footer-follow-icon" style="color:#111111"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/prasidbhusal/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="footer-follow-icon" style="color:#111111"><i class="fa-brands fa-linkedin-in"></i></a>
       </div>
+
+      <!-- Divider -->
+      <hr class="footer-divider" />
+
+      <!-- Nav columns -->
+      <div class="footer-cols-row">
+        <div class="footer-gcol">
+          <span class="footer-gcol-heading" style="color:#111111">Navigate</span>
+          <a href="#hero"       class="footer-gcol-link" style="color:#111111">Home</a>
+          <a href="#about"      class="footer-gcol-link" style="color:#111111">About</a>
+          <a href="#projects"   class="footer-gcol-link" style="color:#111111">Projects</a>
+          <a href="#experience" class="footer-gcol-link" style="color:#111111">Experience</a>
+        </div>
+        <div class="footer-gcol">
+          <span class="footer-gcol-heading" style="color:#111111">More</span>
+          <a href="#skills"  class="footer-gcol-link" style="color:#111111">Skills</a>
+          <a href="#contact" class="footer-gcol-link" style="color:#111111">Contact</a>
+          <a href="assets/images/PrasidResume1.pdf" target="_blank" rel="noopener noreferrer" class="footer-gcol-link" style="color:#111111">Resume</a>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-gbot">
+        <a href="#hero" class="footer-glogo" style="color:#111111">PB<span>.</span></a>
+        <p class="footer-gcopy" style="color:#111111">© <span id="year"></span> Prasid Bhusal. All rights reserved.</p>
+      </div>
+
     </div>
   </footer>
 
