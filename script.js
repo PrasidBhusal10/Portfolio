@@ -34,7 +34,7 @@ window.scrollTo(0, 0);
 
     if (bar) bar.style.width = progress + '%';
     if (ring) ring.style.strokeDashoffset = CIRC * (1 - progress / 100);
-    if (counter) counter.textContent = String(progress).padStart(2, '0') + '%';
+    if (counter) counter.textContent = String(progress).padStart(2, '0');
 
     if (step >= STEPS) {
       clearInterval(timer);
