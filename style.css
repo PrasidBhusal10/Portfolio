@@ -88,8 +88,19 @@ body {
   color: #1C1838 !important;
 }
 @media (max-width: 767px) {
-  html.dark body { background-color: #0d0b18 !important; }
-  html.dark section { background-color: transparent !important; }
+  html.dark body                    { background-color: #0d0b18 !important; color: #e5e2f8 !important; }
+  html.dark section                 { background-color: transparent !important; }
+  html.dark .bg-neutral-950         { background-color: #0d0b18 !important; }
+  html.dark .bg-neutral-900\/30     { background-color: rgba(20,16,40,0.6) !important; }
+  html.dark .bg-neutral-900\/50     { background-color: rgba(20,16,40,0.8) !important; }
+  html.dark .bg-neutral-900         { background-color: #13102a !important; }
+  html.dark .bg-neutral-800         { background-color: #1a1635 !important; }
+  html.dark .text-neutral-100       { color: #e5e2f8 !important; }
+  html.dark .text-neutral-400       { color: #9B8EC4 !important; }
+  html.dark .text-neutral-500       { color: #7B6FA8 !important; }
+  html.dark .text-white             { color: #e5e2f8 !important; }
+  html.dark .skill-card             { background: #13102a !important; border-color: rgba(124,58,237,0.2) !important; }
+  html.dark .project-card           { background: #13102a !important; }
 }
 html.dark .bg-neutral-950   { background-color: #CAC4EC !important; }
 html.dark .bg-neutral-900\/30 { background-color: rgba(176,170,224,0.55) !important; }
